@@ -53,10 +53,10 @@ public class simulator {
 	}
 	public static double passPlay(player.quarterBack qb, player.wideReciever wr, player.defensiveBack cb, player.noseTackle dt){
 		// (QB accuracy + route running - coverage) to find the probability of a catch
-		double catchProb = ((qb.tha + wr.routerunning - 0.5*cb.coverage)/100);
+		double catchProb = ((qb.tha + wr.routerunning - 0.7*cb.coverage)/100);
 		double yardsGained;
 		if(randomBool(catchProb)) {
-			yardsGained = randomNum(30+(qb.thp/100),4);
+			yardsGained = randomNum(20+(qb.thp/10.0),4);
 			qb.attempts++;
 			qb.completions++;
 			cb.tackles++;
@@ -67,7 +67,7 @@ public class simulator {
 			System.out.println(qb.name + " throw to " + wr.name + " for " + yardsGained + " yards");
 			return yardsGained;
 		}
-		else if (randomBool(cb.playmake*0.4/100)){
+		else if (randomBool(cb.playmake*0.1/100)){
 			qb.interceptions++;
 			cb.interceptions++;
 			qb.attempts++;
@@ -76,24 +76,17 @@ public class simulator {
 
 			return 0;
 		}
-		else if (randomBool(0.4)){
-			yardsGained = 0;
-			qb.attempts++;
-			cb.passdefelctions++;
-			Game.gameClock -= 10;
-			System.out.println(qb.name + " pass batted away by " + cb.name);
-			return 0;
-		}
-		else if(randomBool(qb.mob * 4/100)){
+		else if(randomBool(0.4*qb.mob/100.0)){
 			qb.rushAttempts++;
-			yardsGained = randomNum(qb.mob/100 * 20, -3);
-			System.out.println(qb.name + " scrambles for a ");
+			yardsGained = randomNum(qb.mob/100.0 * 20, -3);
+			System.out.println(qb.name + " scrambles for a gain of "+yardsGained);
 			qb.rushYards += yardsGained;
+			Game.gameClock -= 30;
 			return yardsGained;
 		}
-		else if(randomBool(dt.power * 0.02)){
+		else if(randomBool(dt.power * 0.005)){
 			yardsGained = -8;
-			System.out.println(qb.name + " is sacked by " + dt.name + "for a loss of " + yardsGained + "!");
+			System.out.println(qb.name + " is sacked by " + dt.name + " for a loss of " + yardsGained + "!");
 			dt.sack++;
 			return yardsGained;
 		}

@@ -21,12 +21,14 @@ public class player {
 			System.out.println("Yards: " + yards);
 			System.out.println("Touchdowns: " + td);
 			System.out.println("Interceptions: " + interceptions);
+
 			if (attempts != 0){
 				System.out.println("Completion %: " + (100 * completions/attempts));
 				System.out.println("Yards per attempt: " + (yards/attempts));
 				System.out.println("QBR: " + PasserRating());
 			}
-
+			System.out.println("Rush Attempts: " + rushAttempts);
+			System.out.println("Rush Yards: " + rushYards);
 
 		}
 		public double PasserRating() {

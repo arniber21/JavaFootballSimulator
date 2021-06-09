@@ -53,7 +53,7 @@ public class Game {
         Reds.qb.name = "Tom Brady";
         Reds.qb.thp = 60;
         Reds.qb.tha = 90;
-        Reds.qb.mob = 20;
+        Reds.qb.mob = 10;
 
         // New WR named Reds.wr
         Reds.wr.name = "Chris Godwin";
@@ -78,13 +78,13 @@ public class Game {
         // New DB named Blues.cb
 
         Blues.cb.name = "Stephon Gilmore";
-        Blues.cb.coverage = 100;
-        Blues.cb.playmake = 80;
+        Blues.cb.coverage = 90;
+        Blues.cb.playmake = 90;
         // New QB named Blues.qb
         Blues.qb.name = "Cam Newton";
-        Blues.qb.thp = 100;
-        Blues.qb.tha = 90;
-        Blues.qb.mob = 20;
+        Blues.qb.thp = 70;
+        Blues.qb.tha = 70;
+        Blues.qb.mob = 90;
         // New WR named Blues.wr
         Blues.wr.name = "Nelson Agholor";
         Blues.wr.catching = 100;
