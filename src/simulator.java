@@ -114,6 +114,9 @@ public class simulator {
 		}
 
 	}
+	public static boolean inBetween(int x,int a,int y){
+		return a > x && x < y;
+	}
 
 }
 

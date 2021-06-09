@@ -17,6 +17,22 @@ public class Game {
     public static void main(String[] args) {
 
     }
+    public static void printStats(){
+        Reds.qb.printStats();
+        Reds.rb.printStats();
+        Reds.wr.printStats();
+        Reds.dt.printStats();
+        Reds.lb.printStats();
+        Reds.cb.printStats();
+
+
+        Blues.qb.printStats();
+        Blues.rb.printStats();
+        Blues.wr.printStats();
+        Blues.dt.printStats();
+        Blues.lb.printStats();
+        Blues.cb.printStats();
+    }
     public static void initializeGame(){
         Reds.name = "Reds";
         Blues.name = "Blues";
@@ -100,7 +116,7 @@ public class Game {
         }
         visualBar[ballIndex] = "|";
         System.out.println("Ball at the " + ball + " yard line. ");
-        System.out.println(String.join("",visualBar));
+        System.out.println(String.join(" ",visualBar));
         System.out.println(down + " and " + togo);
     }
     public static void setGameClock(int a){
@@ -108,7 +124,11 @@ public class Game {
         if (gameClock < 0){
             nextQuarter();
             if(quarter == 3){
-                flipPosessions();
+                System.out.println("Halftime!");
+                System.out.println("Halftime stats: ");
+                printStats();
+                Blues.possesion = Blues.recieveAtHalf;
+                Reds.possesion = Reds.recieveAtHalf;
                 ball = 20;
             }
         }
@@ -152,7 +172,7 @@ public class Game {
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Reds.rb,Blues.lb, Blues.dt, Blues.cb));
                 ball += (int) yardageGain;
-                postPlay(30);
+                postPlay(10);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Reds.rb.name+"!");
                     Reds.score += 7;
@@ -179,7 +199,7 @@ public class Game {
                     flipPosessions();
                     ball = 20;
                 }
-                postPlay(10);
+                postPlay(5);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -210,7 +230,7 @@ public class Game {
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Blues.rb,Reds.lb, Reds.dt, Reds.cb));
                 ball += (int) yardageGain;
-                postPlay(30);
+                postPlay(10);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Blues.rb.name+"!");
                     Blues.score += 7;
@@ -238,7 +258,7 @@ public class Game {
                     ball = 20;
                     flipPosessions();
                 }
-                postPlay(10);
+                postPlay(5);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -284,20 +304,8 @@ public class Game {
         }
         System.out.println("Blues scored " + Blues.score);
         System.out.println("Reds scored " + Reds.score);
-        Reds.qb.printStats();
-        Reds.rb.printStats();
-        Reds.wr.printStats();
-        Reds.dt.printStats();
-        Reds.lb.printStats();
-        Reds.cb.printStats();
-
-
-        Blues.qb.printStats();
-        Blues.rb.printStats();
-        Blues.wr.printStats();
-        Blues.dt.printStats();
-        Blues.lb.printStats();
-        Blues.cb.printStats();
+        System.out.println("End of game stats: ");
+        printStats();
         System.exit(0);
     }
 
