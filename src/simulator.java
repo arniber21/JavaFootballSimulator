@@ -104,13 +104,12 @@ public class simulator {
 		Game.ball = Math.abs(100-(40+Game.ball));
 	}
 	public static boolean fieldGoal(){
-		if (randomBool((100-Game.ball-20)/100)){
+		if (randomBool((100-(100-Game.ball-20))/100)){
 			System.out.println("Field Goal Made!");
 			return true;
-
 		}
 		else{
-			System.out.println("Field Goal Made!");
+			System.out.println("Field Goal Missed!");
 			return false;
 		}
 

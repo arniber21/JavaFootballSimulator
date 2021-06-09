@@ -185,7 +185,9 @@ public class Game {
                 simulator.punt();
             }
             else if (inputter.equals("fg")){
-                if(simulator.fieldGoal()){Reds.score += 3;}
+                if(simulator.fieldGoal()){
+                    Reds.score += 3;
+                }
                 flipPosessions();
                 ball = 20;
             }
@@ -213,12 +215,14 @@ public class Game {
                     System.out.println("Touchdown rush by " + Blues.rb.name+"!");
                     Blues.score += 7;
                     Blues.rb.td++;
+                    ball = 20;
                     flipPosessions();
                 }
                 else if (ball < 0){
                     System.out.println("Safety by " + Reds.dt.name + "!");
                     Reds.score += 2;
                     flipPosessions();
+                    ball = 30;
                     flipPosessions();
                 }
 
@@ -231,6 +235,7 @@ public class Game {
                     Blues.qb.td++;
                     Blues.wr.td++;
                     Blues.score += 7;
+                    ball = 20;
                     flipPosessions();
                 }
                 postPlay(10);
@@ -239,7 +244,9 @@ public class Game {
                 simulator.punt();
             }
             else if (inputter.equals("fg")){
-                if(simulator.fieldGoal()){Blues.score += 3;}
+                if(simulator.fieldGoal()){
+                    Blues.score += 3;
+                }
                 flipPosessions();
                 ball = 20;
             }
