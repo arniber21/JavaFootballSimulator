@@ -21,11 +21,11 @@ public class simulator {
 	{
 
 		double yardsGained;
-		double LB = (((lb.playmake + lb.power)/2)/100)/20 + 0.6;
-		double TFL = (((nt.playmake + nt.power)/2 )/100)/20 + 0.1;
+		double LB = (((lb.playmake + lb.power)/2)/100)/20 + 0.5;
+		double TFL = ((((nt.playmake + nt.power)/2 )/100)/20/5);
 		if (randomBool(TFL)){
 			nt.tfl++;
-			yardsGained = (int) randomNum(-1,-5);
+			yardsGained = (int) randomNum(3,-5);
 			rb.yards -= yardsGained;
 			rb.attempts++;
 			Game.gameClock -= 30;
@@ -35,7 +35,7 @@ public class simulator {
 		else if (randomBool(LB)){
 			lb.tackles++;
 			rb.attempts++;
-			yardsGained = (int) randomNum(1,(((lb.playmake + lb.power)/2)/100)*7);
+			yardsGained = (int) randomNum(3,(((lb.playmake + lb.power)/2)/100)*7);
 			rb.yards += yardsGained;
 			Game.gameClock -= 30;
 			System.out.println(yardsGained + " yard rush by " + rb.name);
