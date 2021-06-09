@@ -1,5 +1,5 @@
 public class AI {
-    public String pickPlay(int clock, int playerScore, int aiScore, int down, int togo, int ball){
+    public static String pickPlay(int clock, int playerScore, int aiScore, int down, int togo, int ball){
         if (down == 4 && ball > 70){
             return "fg";
         }
@@ -20,7 +20,7 @@ public class AI {
                 return "run";
             }
         }
-        else if ((simulator.inBetween(900, clock, 570) || simulator.inBetween(450,clock,120)) && !(aiScore > playerScore)){
+        else if ((simulator.inBetween(900, clock, 570) || simulator.inBetween(450,clock,120)) && !(aiScore >= playerScore)){
             if(simulator.randomBool(0.7)){
                 return "pass";
             }

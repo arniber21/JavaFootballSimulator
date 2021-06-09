@@ -158,6 +158,63 @@ public class Game {
     public static void printDowns(){
         System.out.println(down + " and " + togo);
     }
+    public static void redPossessionAI(){
+        down = 1;
+        togo = 10;
+        System.out.println("Reds Ball!");
+        printScore();
+        while(true && Reds.possesion){
+            yardageGain = 0;
+            liveStats();
+            String inputter = AI.pickPlay(Game.gameClock,Game.Blues.score,Game.Reds.score,Game.down,Game.togo,Game.ball);
+            System.out.println(inputter);
+            if(inputter.equals("run")){
+                yardageGain = (simulator.runPlay(Reds.rb,Blues.lb, Blues.dt, Blues.cb));
+                ball += (int) yardageGain;
+                postPlay(10);
+                if (ball > 100){
+                    System.out.println("Touchdown rush by " + Reds.rb.name+"!");
+                    Reds.score += 7;
+                    Reds.rb.td++;
+                    flipPosessions();
+                    ball = 20;
+                }
+                else if (ball < 0){
+                    System.out.println("Safety by " + Blues.dt.name + "!");
+                    Blues.score += 2;
+                    flipPosessions();
+                    ball = 30;
+                }
+
+            }
+            else if(inputter.equals("pass")){
+                yardageGain = (simulator.passPlay(Reds.qb, Reds.wr, Blues.cb, Blues.dt));
+                ball += (int) yardageGain;
+                if (ball > 100){
+                    System.out.println(Reds.qb.name + " touchdown throw to " + Reds.wr.name + "!");
+                    Reds.qb.td++;
+                    Reds.wr.td++;
+                    Reds.score += 7;
+                    flipPosessions();
+                    ball = 20;
+                }
+                postPlay(5);
+            }
+            else if (inputter.equals("punt")){
+                simulator.punt();
+            }
+            else if (inputter.equals("fg")){
+                if(simulator.fieldGoal()){
+                    Reds.score += 3;
+                }
+                flipPosessions();
+                ball = 20;
+            }
+            else if (inputter.equals("endgame")){
+                endGame();
+            }
+        }
+    }
     public static void redPosession(){
         down = 1;
         togo = 10;
@@ -207,6 +264,65 @@ public class Game {
             else if (inputter.equals("fg")){
                 if(simulator.fieldGoal()){
                     Reds.score += 3;
+                }
+                flipPosessions();
+                ball = 20;
+            }
+            else if (inputter.equals("endgame")){
+                endGame();
+            }
+        }
+    }
+    public static void bluePossessionAI(){
+        down = 1;
+        togo = 10;
+        System.out.println("Blues Ball!");
+        printScore();
+        while(true && Blues.possesion){
+            yardageGain = 0;
+            liveStats();
+            System.out.println("pass or run? ");
+            String inputter = AI.pickPlay(Game.gameClock, Game.Blues.score, Game.Reds.score, Game.down,Game.togo,Game.ball);
+            System.out.println(inputter);
+            if(inputter.equals("run")){
+                yardageGain = (simulator.runPlay(Blues.rb,Reds.lb, Reds.dt, Reds.cb));
+                ball += (int) yardageGain;
+                postPlay(10);
+                if (ball > 100){
+                    System.out.println("Touchdown rush by " + Blues.rb.name+"!");
+                    Blues.score += 7;
+                    Blues.rb.td++;
+                    ball = 20;
+                    flipPosessions();
+                }
+                else if (ball < 0){
+                    System.out.println("Safety by " + Reds.dt.name + "!");
+                    Reds.score += 2;
+                    flipPosessions();
+                    ball = 30;
+                    flipPosessions();
+                }
+
+            }
+            else if(inputter.equals("pass")){
+                yardageGain = (simulator.passPlay(Blues.qb, Blues.wr, Reds.cb, Reds.dt));
+                ball += (int) yardageGain;
+                if (ball > 100){
+                    System.out.println(Blues.qb.name + " touchdown throw to " + Blues.wr.name + "!");
+                    Blues.qb.td++;
+                    Blues.wr.td++;
+                    Blues.score += 7;
+                    ball = 20;
+                    flipPosessions();
+                }
+                postPlay(5);
+            }
+            else if (inputter.equals("punt")){
+                simulator.punt();
+            }
+            else if (inputter.equals("fg")){
+                if(simulator.fieldGoal()){
+                    Blues.score += 3;
                 }
                 flipPosessions();
                 ball = 20;
