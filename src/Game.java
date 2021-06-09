@@ -18,8 +18,6 @@ public class Game {
 
     }
     public static void initializeGame(){
-
-        int ball = 20;
         Reds.name = "Reds";
         Blues.name = "Blues";
         Reds.possesion = true;
@@ -72,7 +70,7 @@ public class Game {
         Blues.lb.playmake = 80;
         Blues.lb.power = 90;
         // New DT named Blues.nt
-        Blues.dt.name = "Davon Godchaux";
+        Blues.dt.name = "Vince Wilfork";
         Blues.dt.power = 70;
         Blues.dt.playmake = 80;
         // New DB named Blues.cb
@@ -86,7 +84,7 @@ public class Game {
         Blues.qb.tha = 70;
         Blues.qb.mob = 90;
         // New WR named Blues.wr
-        Blues.wr.name = "Nelson Agholor";
+        Blues.wr.name = "Julian Edelman";
         Blues.wr.catching = 100;
         Blues.wr.routerunning = 30;
 
@@ -96,9 +94,13 @@ public class Game {
     }
     public static void liveStats(){
         String[] visualBar = {"<", "=","=","=","=","=","=","=","=","=",">"};
-        visualBar[((int) ball/10)] = "||";
+        int ballIndex = ((int) ball/10);
+        if (ballIndex > 10){
+            ballIndex = 10;
+        }
+        visualBar[ballIndex] = "|";
         System.out.println("Ball at the " + ball + " yard line. ");
-        System.out.println(Arrays.toString(visualBar));
+        System.out.println(String.join("",visualBar));
         System.out.println(down + " and " + togo);
     }
     public static void setGameClock(int a){
@@ -107,11 +109,12 @@ public class Game {
             nextQuarter();
             if(quarter == 3){
                 flipPosessions();
+                ball = 20;
             }
         }
     }
     public static void printGameClock(){
-        System.out.println(gameClock+" left in the " + quarter + " quarter. ");
+        System.out.println(((int)(gameClock/60))+":"+(gameClock%60)+" left in the " + quarter + " quarter. ");
     }
     public static void postPlay(int a){
         setDowns();
@@ -129,13 +132,13 @@ public class Game {
         if (down > 4){
             System.out.println("turnover on downs!");
             flipPosessions();
+            ball = Math.abs(100-ball);
         }
     }
     public static void printDowns(){
         System.out.println(down + " and " + togo);
     }
     public static void redPosession(){
-        ball = 20;
         down = 1;
         togo = 10;
         System.out.println("Reds Ball!");
@@ -155,11 +158,13 @@ public class Game {
                     Reds.score += 7;
                     Reds.rb.td++;
                     flipPosessions();
+                    ball = 20;
                 }
                 else if (ball < 0){
                     System.out.println("Safety by " + Blues.dt.name + "!");
                     Blues.score += 2;
                     flipPosessions();
+                    ball = 30;
                 }
 
             }
@@ -172,8 +177,17 @@ public class Game {
                     Reds.wr.td++;
                     Reds.score += 7;
                     flipPosessions();
+                    ball = 20;
                 }
                 postPlay(10);
+            }
+            else if (inputter.equals("punt")){
+                simulator.punt();
+            }
+            else if (inputter.equals("fg")){
+                if(simulator.fieldGoal()){Reds.score += 3;}
+                flipPosessions();
+                ball = 20;
             }
             else if (inputter.equals("endgame")){
                 endGame();
@@ -181,7 +195,6 @@ public class Game {
         }
     }
     public static void bluePossession(){
-        ball = 20;
         down = 1;
         togo = 10;
         System.out.println("Blues Ball!");
@@ -221,6 +234,14 @@ public class Game {
                     flipPosessions();
                 }
                 postPlay(10);
+            }
+            else if (inputter.equals("punt")){
+                simulator.punt();
+            }
+            else if (inputter.equals("fg")){
+                if(simulator.fieldGoal()){Blues.score += 3;}
+                flipPosessions();
+                ball = 20;
             }
             else if (inputter.equals("endgame")){
                 endGame();

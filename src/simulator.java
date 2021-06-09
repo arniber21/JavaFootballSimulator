@@ -73,7 +73,7 @@ public class simulator {
 			qb.attempts++;
 			System.out.println("Pass is intercepted by " + cb.name + "!");
 			Game.flipPosessions();
-
+			Game.ball = Math.abs(100-Game.ball);
 			return 0;
 		}
 		else if(randomBool(0.4*qb.mob/100.0)){
@@ -98,8 +98,22 @@ public class simulator {
 			System.out.println(qb.name + " pass batted away by " + cb.name);
 			return 0;
 		}
-		// Else 70% incompletion chance, the other 30% fluctuates by playmake whether it is intercepted or not.
-		// QB throw power for depth of catch
+	}
+	public static void punt(){
+		Game.flipPosessions();
+		Game.ball = Math.abs(100-(40+Game.ball));
+	}
+	public static boolean fieldGoal(){
+		if (randomBool((100-Game.ball-20)/100)){
+			System.out.println("Field Goal Made!");
+			return true;
+
+		}
+		else{
+			System.out.println("Field Goal Made!");
+			return false;
+		}
+
 	}
 
 }

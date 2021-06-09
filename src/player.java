@@ -148,6 +148,7 @@ public class player {
 		public void printStats(){
 			System.out.println(name+"'s stats: ");
 			System.out.println("TFLs: " + tfl);
+			System.out.println("Sacks: " + sack);
 		}
 	}
 	
