@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
+    public static boolean inGame;
     static team Reds = new team();
     static team Blues = new team();
     public static int ball = 0;
@@ -34,6 +35,7 @@ public class Game {
         Blues.cb.printStats();
     }
     public static void initializeGame(){
+        boolean inGame = true;
         Reds.name = "Reds";
         Blues.name = "Blues";
         Reds.possesion = true;
@@ -114,6 +116,9 @@ public class Game {
         if (ballIndex > 10){
             ballIndex = 10;
         }
+        else if (ballIndex < 0){
+            ballIndex = 0;
+        }
         visualBar[ballIndex] = "|";
         System.out.println("Ball at the " + ball + " yard line. ");
         System.out.println(String.join(" ",visualBar));
@@ -121,7 +126,10 @@ public class Game {
     }
     public static void setGameClock(int a){
         gameClock -= a;
-        if (gameClock < 0){
+        if (gameClock < 0 && quarter >= 4){
+            endGame();
+        }
+        else if (gameClock < 0){
             nextQuarter();
             if(quarter == 3){
                 System.out.println("Halftime!");
@@ -404,7 +412,7 @@ public class Game {
     public static void nextQuarter(){
         quarter++;
         gameClock = 900;
-        if (quarter > 4){
+        if (quarter == 5 || quarter > 4){
             endGame();
         }
     }
@@ -421,8 +429,8 @@ public class Game {
         System.out.println("Blues scored " + Blues.score);
         System.out.println("Reds scored " + Reds.score);
         System.out.println("End of game stats: ");
+        inGame = false;
         printStats();
-        System.exit(0);
     }
 
 

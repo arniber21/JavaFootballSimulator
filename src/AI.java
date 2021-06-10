@@ -13,15 +13,15 @@ public class AI {
             return "pass";
         }
         else if ((simulator.inBetween(900, clock, 570) || simulator.inBetween(450,clock,120)) && aiScore > playerScore){
-            if(simulator.randomBool(0.4)){
+            if(simulator.randomBool(0.7)){
                 return "pass";
             }
             else {
                 return "run";
             }
         }
-        else if ((simulator.inBetween(900, clock, 570) || simulator.inBetween(450,clock,120)) && !(aiScore >= playerScore)){
-            if(simulator.randomBool(0.7)){
+        else if ((simulator.inBetween(900, clock, 570) || simulator.inBetween(450,clock,120)) && !(aiScore <= playerScore)){
+            if(simulator.randomBool(0.9)){
                 return "pass";
             }
             else {
@@ -31,6 +31,11 @@ public class AI {
         else if (!(simulator.inBetween(900, clock, 570) || !(simulator.inBetween(450,clock,120)))){
             return "pass";
         }
-        return "run";
+        else if (simulator.randomBool(0.6)){
+            return "pass";
+        }
+        else {
+            return "run";
+        }
     }
 }
