@@ -43,6 +43,8 @@ public class Main {
             }
         }
         else if(inputter.equals("F")){
+            int blueTeamWins = 0;
+            int redTeamWins = 0;
             for (int i = 0; i < 17; i++){
                 while(Game.inGame){
                     if (Game.Reds.possesion){
@@ -52,9 +54,48 @@ public class Main {
                         Game.bluePossessionAI();
                     }
                 }
+                if (Game.Blues.score >= Game.Reds.score){
+                    blueTeamWins++;
+                }
+                else{
+                    redTeamWins++;
+                }
+                Game.Reds.score = 0;
+                Game.Blues.score = 0;
                 Game.inGame = true;
                 Game.gameClock = 900;
                 Game.quarter = 1;
+                System.out.println("Blue team record: " + blueTeamWins + "-" + redTeamWins);
+                System.out.println("Red team record: " + redTeamWins + "-" + blueTeamWins);
+
+            }
+        }
+        else if(inputter.equals("C")){
+            int blueTeamWins = 0;
+            int redTeamWins = 0;
+            for (int i = 0; i < 340; i++){
+                while(Game.inGame){
+                    if (Game.Reds.possesion){
+                        Game.redPossessionAI();
+                    }
+                    else{
+                        Game.bluePossessionAI();
+                    }
+                }
+                if (Game.Blues.score >= Game.Reds.score){
+                    blueTeamWins++;
+                }
+                else{
+                    redTeamWins++;
+                }
+                Game.Reds.score = 0;
+                Game.Blues.score = 0;
+                Game.inGame = true;
+                Game.gameClock = 900;
+                Game.quarter = 1;
+                System.out.println("Blue team record: " + blueTeamWins + "-" + redTeamWins);
+                System.out.println("Red team record: " + redTeamWins + "-" + blueTeamWins);
+
 
             }
         }

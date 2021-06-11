@@ -46,6 +46,14 @@ public class Game {
         System.out.println(String.join(" ",visualBar));
         System.out.println(down + " and " + togo);
     }
+    public static boolean gameOver(){
+        if(gameClock < 0 && quarter >= 4){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     public static void setGameClock(int a){
         gameClock -= a;
         if (gameClock < 0 && quarter >= 4){
@@ -97,7 +105,7 @@ public class Game {
         togo = 10;
         System.out.println("Reds Ball!");
         printScore();
-        while(true && Reds.possesion){
+        while(true && Reds.possesion && gameOver()){
             yardageGain = 0;
             liveStats();
             String inputter = AI.pickPlay(Game.gameClock,Game.Blues.score,Game.Reds.score,Game.down,Game.togo,Game.ball);
@@ -155,7 +163,7 @@ public class Game {
         togo = 10;
         System.out.println("Reds Ball!");
         printScore();
-        while(true && Reds.possesion){
+        while(true && Reds.possesion && gameOver()){
             yardageGain = 0;
             liveStats();
             System.out.println("pass or run? ");
@@ -213,7 +221,7 @@ public class Game {
         togo = 10;
         System.out.println("Blues Ball!");
         printScore();
-        while(true && Blues.possesion){
+        while(true && Blues.possesion && gameOver()){
             yardageGain = 0;
             liveStats();
             String inputter = AI.pickPlay(Game.gameClock,Game.Reds.score,Game.Blues.score,Game.down,Game.togo,Game.ball);
@@ -272,7 +280,7 @@ public class Game {
         togo = 10;
         System.out.println("Blues Ball!");
         printScore();
-        while(true && Blues.possesion){
+        while(true && Blues.possesion && gameOver()){
             yardageGain = 0;
             liveStats();
             System.out.println("pass or run? ");
