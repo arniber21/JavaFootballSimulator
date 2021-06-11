@@ -56,18 +56,17 @@ public class simulator {
 		double catchProb = ((qb.tha + wr.routerunning - 0.7*cb.coverage)/100);
 		double yardsGained;
 		if(randomBool(catchProb)) {
-			yardsGained = randomNum(20+(qb.thp/10.0),4);
+			yardsGained = randomNum(15+(qb.thp/10.0),4);
 			qb.attempts++;
 			qb.completions++;
 			cb.tackles++;
 			qb.yards += yardsGained;
 			wr.receptions++;
 			wr.yards += yardsGained;
-			Game.gameClock -= 10;
 			System.out.println(qb.name + " throw to " + wr.name + " for " + yardsGained + " yards");
 			return yardsGained;
 		}
-		else if (randomBool(cb.playmake*0.1/100)){
+		else if (randomBool(cb.playmake*0.05/100)){
 			qb.interceptions++;
 			cb.interceptions++;
 			qb.attempts++;
@@ -76,7 +75,7 @@ public class simulator {
 			Game.ball = Math.abs(100-Game.ball);
 			return 0;
 		}
-		else if(randomBool(0.4*qb.mob/100.0)){
+		else if(randomBool(0.2*qb.mob/100.0)){
 			qb.rushAttempts++;
 			yardsGained = randomNum(qb.mob/100.0 * 20, -3);
 			System.out.println(qb.name + " scrambles for a gain of "+yardsGained);
@@ -88,6 +87,7 @@ public class simulator {
 			yardsGained = -8;
 			System.out.println(qb.name + " is sacked by " + dt.name + " for a loss of " + yardsGained + "!");
 			dt.sack++;
+			Game.gameClock -= 30;
 			return yardsGained;
 		}
 		else {

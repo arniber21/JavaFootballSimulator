@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Game.initializeGame();
+        ImportTeams.importDefaultTeams();
         Game.ball = 20;
 
         System.out.println("Welcome to Java Football Sim 1.1.0!");
@@ -27,6 +27,9 @@ public class Main {
         }
         else if (inputter.equals("A")){
             while(Game.inGame){
+                if (!Game.inGame){
+                    break;
+                }
                 if (Game.Reds.possesion){
                     Game.redPossessionAI();
                 }
@@ -37,6 +40,9 @@ public class Main {
         }
         else if(inputter.equals("S")){
             while(Game.inGame){
+                if (!Game.inGame){
+                    break;
+                }
                 if (Game.Reds.possesion){
                     Game.redPossessionAI();
                 }
@@ -48,6 +54,9 @@ public class Main {
         else if(inputter.equals("F")){
             for (int i = 0; i < 17; i++){
                 while(Game.inGame){
+                    if (!Game.inGame){
+                        break;
+                    }
                     if (Game.Reds.possesion){
                         Game.redPossessionAI();
                     }
@@ -55,8 +64,9 @@ public class Main {
                         Game.bluePossessionAI();
                     }
                 }
-                Game.initializeGame();
                 Game.inGame = true;
+                Game.gameClock = 900;
+                Game.quarter = 1;
 
             }
         }

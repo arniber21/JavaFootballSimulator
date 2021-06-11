@@ -13,11 +13,6 @@ public class Game {
     public static double yardageGain = 0;
     public static Scanner input = new Scanner(System.in);
 
-
-
-    public static void main(String[] args) {
-
-    }
     public static void printStats(){
         Reds.qb.printStats();
         Reds.rb.printStats();
@@ -33,79 +28,6 @@ public class Game {
         Blues.dt.printStats();
         Blues.lb.printStats();
         Blues.cb.printStats();
-    }
-    public static void initializeGame(){
-        boolean inGame = true;
-        Reds.name = "Reds";
-        Blues.name = "Blues";
-        Reds.possesion = true;
-        Reds.recieveAtHalf = false;
-        Blues.recieveAtHalf = true;
-        Blues.possesion = false;
-        Reds.score = 0;
-        Blues.score = 0;
-        // New running back named Reds.rb
-
-        Reds.rb.name = "Leonard Fournette";
-        Reds.rb.speed = 90;
-        Reds.rb.elusive = 20;
-        Reds.rb.power = 10;
-        // New linebacker named Reds.lb
-
-        Reds.lb.name = "Lavonte David";
-        Reds.lb.playmake = 70;
-        Reds.lb.power = 70;
-
-        // New DT named Reds.nt
-        Reds.dt.name = "Ndamukong Suh";
-        Reds.dt.power = 70;
-        Reds.dt.playmake = 80;
-        // New DB named Reds.cb
-
-        Reds.cb.name = "Carlton Davis";
-        Reds.cb.coverage = 60;
-        Reds.cb.playmake = 30;
-        // New QB named Reds.qb
-        Reds.qb.name = "Tom Brady";
-        Reds.qb.thp = 60;
-        Reds.qb.tha = 90;
-        Reds.qb.mob = 10;
-
-        // New WR named Reds.wr
-        Reds.wr.name = "Chris Godwin";
-        Reds.wr.catching = 80;
-        Reds.wr.routerunning = 30;
-
-
-
-        Blues.rb.name = "Damien Harris";
-        Blues.rb.speed = 90;
-        Blues.rb.elusive = 20;
-        Blues.rb.power = 10;
-        // New linebacker named Blues.lb
-
-        Blues.lb.name = "Donta Hightower";
-        Blues.lb.playmake = 80;
-        Blues.lb.power = 90;
-        // New DT named Blues.nt
-        Blues.dt.name = "Vince Wilfork";
-        Blues.dt.power = 70;
-        Blues.dt.playmake = 80;
-        // New DB named Blues.cb
-
-        Blues.cb.name = "Stephon Gilmore";
-        Blues.cb.coverage = 90;
-        Blues.cb.playmake = 90;
-        // New QB named Blues.qb
-        Blues.qb.name = "Cam Newton";
-        Blues.qb.thp = 70;
-        Blues.qb.tha = 70;
-        Blues.qb.mob = 90;
-        // New WR named Blues.wr
-        Blues.wr.name = "Julian Edelman";
-        Blues.wr.catching = 100;
-        Blues.wr.routerunning = 30;
-
     }
     public static void printScore(){
         System.out.println("Reds: " + Reds.score + "  |||  Blues: " + Blues.score);
@@ -163,6 +85,10 @@ public class Game {
             ball = Math.abs(100-ball);
         }
     }
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     public static void printDowns(){
         System.out.println(down + " and " + togo);
     }
@@ -206,7 +132,6 @@ public class Game {
                     flipPosessions();
                     ball = 20;
                 }
-                postPlay(5);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -221,7 +146,9 @@ public class Game {
             else if (inputter.equals("endgame")){
                 endGame();
             }
+            postPlay(10);
         }
+
     }
     public static void redPosession(){
         down = 1;
@@ -264,7 +191,6 @@ public class Game {
                     flipPosessions();
                     ball = 20;
                 }
-                postPlay(5);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -280,6 +206,7 @@ public class Game {
                 endGame();
             }
         }
+        postPlay(10);
     }
     public static void bluePossessionAI(){
         down = 1;
@@ -323,7 +250,7 @@ public class Game {
                     ball = 20;
                     flipPosessions();
                 }
-                postPlay(5);
+                postPlay(10);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -338,6 +265,7 @@ public class Game {
             else if (inputter.equals("endgame")){
                 endGame();
             }
+            postPlay(10);
         }
     }
     public static void bluePossession(){
@@ -382,7 +310,6 @@ public class Game {
                     ball = 20;
                     flipPosessions();
                 }
-                postPlay(5);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -398,6 +325,7 @@ public class Game {
                 endGame();
             }
         }
+        postPlay(10);
     }
     public static void flipPosessions(){
         if (Reds.possesion){
@@ -412,11 +340,12 @@ public class Game {
     public static void nextQuarter(){
         quarter++;
         gameClock = 900;
-        if (quarter == 5 || quarter > 4){
+        if (quarter > 4){
             endGame();
         }
     }
     public static void endGame(){
+        inGame = false;
         if(Reds.score > Blues.score){
             System.out.println("Reds win!");
         }
@@ -429,7 +358,6 @@ public class Game {
         System.out.println("Blues scored " + Blues.score);
         System.out.println("Reds scored " + Reds.score);
         System.out.println("End of game stats: ");
-        inGame = false;
         printStats();
     }
 
