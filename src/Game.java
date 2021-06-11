@@ -105,7 +105,7 @@ public class Game {
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Reds.rb,Blues.lb, Blues.dt, Blues.cb));
                 ball += (int) yardageGain;
-                postPlay(10);
+                postPlay(17);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Reds.rb.name+"!");
                     Reds.score += 7;
@@ -146,7 +146,7 @@ public class Game {
             else if (inputter.equals("endgame")){
                 endGame();
             }
-            postPlay(10);
+            postPlay(17);
         }
 
     }
@@ -164,7 +164,7 @@ public class Game {
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Reds.rb,Blues.lb, Blues.dt, Blues.cb));
                 ball += (int) yardageGain;
-                postPlay(10);
+                postPlay(17);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Reds.rb.name+"!");
                     Reds.score += 7;
@@ -206,7 +206,7 @@ public class Game {
                 endGame();
             }
         }
-        postPlay(10);
+        postPlay(17);
     }
     public static void bluePossessionAI(){
         down = 1;
@@ -216,26 +216,24 @@ public class Game {
         while(true && Blues.possesion){
             yardageGain = 0;
             liveStats();
-            System.out.println("pass or run? ");
-            String inputter = AI.pickPlay(Game.gameClock, Game.Blues.score, Game.Reds.score, Game.down,Game.togo,Game.ball);
+            String inputter = AI.pickPlay(Game.gameClock,Game.Reds.score,Game.Blues.score,Game.down,Game.togo,Game.ball);
             System.out.println(inputter);
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Blues.rb,Reds.lb, Reds.dt, Reds.cb));
                 ball += (int) yardageGain;
-                postPlay(10);
+                postPlay(17);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Blues.rb.name+"!");
                     Blues.score += 7;
                     Blues.rb.td++;
-                    ball = 20;
                     flipPosessions();
+                    ball = 20;
                 }
                 else if (ball < 0){
                     System.out.println("Safety by " + Reds.dt.name + "!");
                     Reds.score += 2;
                     flipPosessions();
                     ball = 30;
-                    flipPosessions();
                 }
 
             }
@@ -247,10 +245,9 @@ public class Game {
                     Blues.qb.td++;
                     Blues.wr.td++;
                     Blues.score += 7;
-                    ball = 20;
                     flipPosessions();
+                    ball = 20;
                 }
-                postPlay(10);
             }
             else if (inputter.equals("punt")){
                 simulator.punt();
@@ -265,10 +262,12 @@ public class Game {
             else if (inputter.equals("endgame")){
                 endGame();
             }
-            postPlay(10);
+            postPlay(17);
         }
+
     }
-    public static void bluePossession(){
+
+    public static void bluePosession(){
         down = 1;
         togo = 10;
         System.out.println("Blues Ball!");
@@ -282,20 +281,19 @@ public class Game {
             if(inputter.equals("run")){
                 yardageGain = (simulator.runPlay(Blues.rb,Reds.lb, Reds.dt, Reds.cb));
                 ball += (int) yardageGain;
-                postPlay(10);
+                postPlay(17);
                 if (ball > 100){
                     System.out.println("Touchdown rush by " + Blues.rb.name+"!");
                     Blues.score += 7;
                     Blues.rb.td++;
-                    ball = 20;
                     flipPosessions();
+                    ball = 20;
                 }
                 else if (ball < 0){
                     System.out.println("Safety by " + Reds.dt.name + "!");
                     Reds.score += 2;
                     flipPosessions();
                     ball = 30;
-                    flipPosessions();
                 }
 
             }
@@ -307,8 +305,8 @@ public class Game {
                     Blues.qb.td++;
                     Blues.wr.td++;
                     Blues.score += 7;
-                    ball = 20;
                     flipPosessions();
+                    ball = 20;
                 }
             }
             else if (inputter.equals("punt")){
@@ -325,7 +323,7 @@ public class Game {
                 endGame();
             }
         }
-        postPlay(10);
+        postPlay(17);
     }
     public static void flipPosessions(){
         if (Reds.possesion){

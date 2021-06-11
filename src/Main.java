@@ -14,35 +14,26 @@ public class Main {
         Game.inGame = true;
         if (inputter.equals("B")){
             while(Game.inGame){
-                if (!Game.inGame){
-                    break;
-                }
-                else if (Game.Reds.possesion){
+                if (Game.Reds.possesion){
                     Game.redPosession();
                 }
                 else{
-                    Game.bluePossession();
+                    Game.bluePosession();
                 }
             }
         }
         else if (inputter.equals("A")){
             while(Game.inGame){
-                if (!Game.inGame){
-                    break;
-                }
                 if (Game.Reds.possesion){
                     Game.redPossessionAI();
                 }
                 else{
-                    Game.bluePossession();
+                    Game.bluePosession();
                 }
             }
         }
         else if(inputter.equals("S")){
             while(Game.inGame){
-                if (!Game.inGame){
-                    break;
-                }
                 if (Game.Reds.possesion){
                     Game.redPossessionAI();
                 }
@@ -54,9 +45,6 @@ public class Main {
         else if(inputter.equals("F")){
             for (int i = 0; i < 17; i++){
                 while(Game.inGame){
-                    if (!Game.inGame){
-                        break;
-                    }
                     if (Game.Reds.possesion){
                         Game.redPossessionAI();
                     }
