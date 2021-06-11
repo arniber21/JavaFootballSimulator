@@ -43,7 +43,7 @@ public class Game {
         }
         visualBar[ballIndex] = "|";
         System.out.println("Ball at the " + ball + " yard line. ");
-        System.out.println(String.join(" ",visualBar));
+        System.out.println(String.join("=",visualBar));
         System.out.println(down + " and " + togo);
     }
     public static boolean gameOver(){
