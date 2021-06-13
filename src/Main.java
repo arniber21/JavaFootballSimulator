@@ -1,44 +1,45 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-
+    static Game game = new Game();
     public static void main(String[] args) {
-        ImportTeams.importDefaultTeams();
-        Game.ball = 20;
-
-        System.out.println("Welcome to Java Football Sim 1.1.0!");
+        ImportTeams.initializeTeam(game.Reds, "Reds","Tom Brady", "Leonard Fournette", "Mike Evans", "Lavonte David", "Ndamukong Suh", "Carlton Davis");
+        ImportTeams.initializeTeam(game.Blues, "Blues","Mac Jones", "Damien Harris", "Nelson Agholor", "Donta Hightower", "Vince Wilfork", "Stephon Gilmore");
+        game.ball = 20;
+        game.Reds.name = "Reds";
+        game.Blues.name = "Blues";
+        System.out.println("Welcome to Java Football Sim 1.2.0!");
         Scanner input = new Scanner(System.in);
         System.out.println("Would you like to play both sides (with a friend) or play against an AI? B for both sides or A for AI. ");
         String inputter = input.next();
-        Game.inGame = true;
+        game.inGame = true;
         if (inputter.equals("B")){
-            while(Game.inGame){
-                if (Game.Reds.possesion){
-                    Game.redPosession();
+            while(game.inGame){
+                if (game.RedBall){
+                    game.redPosession(game);
                 }
                 else{
-                    Game.bluePosession();
+                    game.bluePosession(game);
                 }
             }
         }
         else if (inputter.equals("A")){
-            while(Game.inGame){
-                if (Game.Reds.possesion){
-                    Game.redPossessionAI();
+            while(game.inGame){
+                if (game.RedBall){
+                    game.redPossessionAI(game);
                 }
                 else{
-                    Game.bluePosession();
+                    game.bluePosession(game);
                 }
             }
         }
         else if(inputter.equals("S")){
-            while(Game.inGame){
-                if (Game.Reds.possesion){
-                    Game.redPossessionAI();
+            while(game.inGame){
+                if (game.RedBall){
+                    game.redPossessionAI(game);
                 }
                 else{
-                    Game.bluePossessionAI();
+                    game.bluePossessionAI(game);
                 }
             }
         }
@@ -46,25 +47,25 @@ public class Main {
             int blueTeamWins = 0;
             int redTeamWins = 0;
             for (int i = 0; i < 17; i++){
-                while(Game.inGame){
-                    if (Game.Reds.possesion){
-                        Game.redPossessionAI();
+                while(game.inGame){
+                    if (game.RedBall){
+                        game.redPossessionAI(game);
                     }
                     else{
-                        Game.bluePossessionAI();
+                        game.bluePossessionAI(game);
                     }
                 }
-                if (Game.Blues.score >= Game.Reds.score){
+                if (game.Bluescore >= game.Redscore){
                     blueTeamWins++;
                 }
                 else{
                     redTeamWins++;
                 }
-                Game.Reds.score = 0;
-                Game.Blues.score = 0;
-                Game.inGame = true;
-                Game.gameClock = 900;
-                Game.quarter = 1;
+                game.Redscore = 0;
+                game.Bluescore = 0;
+                game.inGame = true;
+                game.gameClock = 900;
+                game.quarter = 1;
                 System.out.println("Blue team record: " + blueTeamWins + "-" + redTeamWins);
                 System.out.println("Red team record: " + redTeamWins + "-" + blueTeamWins);
 
@@ -74,25 +75,25 @@ public class Main {
             int blueTeamWins = 0;
             int redTeamWins = 0;
             for (int i = 0; i < 340; i++){
-                while(Game.inGame){
-                    if (Game.Reds.possesion){
-                        Game.redPossessionAI();
+                while(game.inGame){
+                    if (game.RedBall){
+                        game.redPossessionAI(game);
                     }
                     else{
-                        Game.bluePossessionAI();
+                        game.bluePossessionAI(game);
                     }
                 }
-                if (Game.Blues.score >= Game.Reds.score){
+                if (game.Bluescore >= game.Redscore){
                     blueTeamWins++;
                 }
                 else{
                     redTeamWins++;
                 }
-                Game.Reds.score = 0;
-                Game.Blues.score = 0;
-                Game.inGame = true;
-                Game.gameClock = 900;
-                Game.quarter = 1;
+                game.Redscore = 0;
+                game.Bluescore = 0;
+                game.inGame = true;
+                game.gameClock = 900;
+                game.quarter = 1;
                 System.out.println("Blue team record: " + blueTeamWins + "-" + redTeamWins);
                 System.out.println("Red team record: " + redTeamWins + "-" + blueTeamWins);
 

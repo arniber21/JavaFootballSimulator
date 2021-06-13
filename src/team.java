@@ -1,13 +1,16 @@
 
 public class team {
 	String name = "placeholder";
-	player.quarterBack qb = new player.quarterBack();
-	player.runningBack rb = new player.runningBack();
-	player.wideReciever wr = new player.wideReciever();
-	player.defensiveBack cb = new player.defensiveBack();
-	player.lineBacker lb = new player.lineBacker();
-	player.noseTackle dt = new player.noseTackle();
-	boolean possesion = false;
-	int score = 0;
-	boolean recieveAtHalf = false;
+	quarterBack qb = new quarterBack();
+	quarterBack qb2 = new quarterBack();
+	runningBack rb = new runningBack();
+	runningBack rb2 = new runningBack();
+	wideReciever wr = new wideReciever();
+	wideReciever wr2 = new wideReciever();
+	defensiveBack cb = new defensiveBack();
+	defensiveBack cb2 = new defensiveBack();
+	lineBacker lb = new lineBacker();
+	lineBacker lb2 = new lineBacker();
+	noseTackle dt = new noseTackle();
+	noseTackle dt2 = new noseTackle();
 }

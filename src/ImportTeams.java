@@ -1,74 +1,103 @@
 import java.io.*;
 import java.util.Scanner;
 public class ImportTeams {
-    public static void importDefaultTeams(){
+    public static void importDefaultTeams(team Red, team Blue){
 
-        Game.Reds.name = "Reds";
-        Game.Blues.name = "Blues";
-        Game.Reds.recieveAtHalf = false;
-        Game.Reds.possesion = true;
-        Game.Blues.recieveAtHalf = true;
-        Game.Blues.possesion = false;
-        Game.Reds.score = 0;
-        Game.Blues.score = 0;
+        Red.name = "Red";
+        Blue.name = "Blue";
 
 
-        Game.Reds.rb.name = "Leonard Fournette";
-        Game.Reds.rb.speed = 90;
-        Game.Reds.rb.elusive = 20;
-        Game.Reds.rb.power = 10;
+        Red.rb.name = "Leonard Fournette";
+        Red.rb.speed = 90;
+        Red.rb.elusive = 20;
+        Red.rb.power = 10;
 
-        Game.Reds.lb.name = "Lavonte David";
-        Game.Reds.lb.playmake = 70;
-        Game.Reds.lb.power = 70;
+        Red.lb.name = "Lavonte David";
+        Red.lb.playmake = 70;
+        Red.lb.power = 70;
 
-        Game.Reds.dt.name = "Ndamukong Suh";
-        Game.Reds.dt.power = 70;
-        Game.Reds.dt.playmake = 80;
+        Red.dt.name = "Ndamukong Suh";
+        Red.dt.power = 70;
+        Red.dt.playmake = 80;
 
-        Game.Reds.cb.name = "Carlton Davis";
-        Game.Reds.cb.coverage = 90;
-        Game.Reds.cb.playmake = 90;
+        Red.cb.name = "Carlton Davis";
+        Red.cb.coverage = 90;
+        Red.cb.playmake = 90;
 
-        Game.Reds.qb.name = "Tom Brady";
-        Game.Reds.qb.thp = 60;
-        Game.Reds.qb.tha = 90;
-        Game.Reds.qb.mob = 10;
+        Red.qb.name = "Tom Brady";
+        Red.qb.thp = 60;
+        Red.qb.tha = 90;
+        Red.qb.mob = 10;
 
 
-        Game.Reds.wr.name = "Chris Godwin";
-        Game.Reds.wr.catching = 80;
-        Game.Reds.wr.routerunning = 30;
+        Red.wr.name = "Chris Godwin";
+        Red.wr.catching = 80;
+        Red.wr.routerunning = 30;
 
 
 
-        Game.Blues.rb.name = "Damien Harris";
-        Game.Blues.rb.speed = 90;
-        Game.Blues.rb.elusive = 20;
-        Game.Blues.rb.power = 10;
+        Blue.rb.name = "Damien Harris";
+        Blue.rb.speed = 90;
+        Blue.rb.elusive = 20;
+        Blue.rb.power = 10;
 
 
-        Game.Blues.lb.name = "Donta Hightower";
-        Game.Blues.lb.playmake = 80;
-        Game.Blues.lb.power = 90;
+        Blue.lb.name = "Donta Hightower";
+        Blue.lb.playmake = 80;
+        Blue.lb.power = 90;
 
-        Game.Blues.dt.name = "Vince Wilfork";
-        Game.Blues.dt.power = 70;
-        Game.Blues.dt.playmake = 80;
+        Blue.dt.name = "Vince Wilfork";
+        Blue.dt.power = 70;
+        Blue.dt.playmake = 80;
 
 
-        Game.Blues.cb.name = "Stephon Gilmore";
-        Game.Blues.cb.coverage = 90;
-        Game.Blues.cb.playmake = 90;
+        Blue.cb.name = "Stephon Gilmore";
+        Blue.cb.coverage = 90;
+        Blue.cb.playmake = 90;
 
-        Game.Blues.qb.name = "Mac Jones";
-        Game.Blues.qb.thp = 60;
-        Game.Blues.qb.tha = 90;
-        Game.Blues.qb.mob = 10;
+        Blue.qb.name = "Mac Jones";
+        Blue.qb.thp = 60;
+        Blue.qb.tha = 90;
+        Blue.qb.mob = 10;
 
-        Game.Blues.wr.name = "Julian Edelman";
-        Game.Blues.wr.catching = 80;
-        Game.Blues.wr.routerunning = 30;
+        Blue.wr.name = "Julian Edelman";
+        Blue.wr.catching = 80;
+        Blue.wr.routerunning = 30;
+    }
+    public static void initializeTeam(team Red, String name, String qbName, String rbName, String wrName, String lbName, String dtName, String dbName){
+        Red.name = name;
+        Red.rb.name = rbName;
+        Red.rb.speed = 90;
+        Red.rb.elusive = 20;
+        Red.rb.power = 10;
+
+        Red.lb.name = lbName;
+        Red.lb.playmake = 70;
+        Red.lb.power = 70;
+
+        Red.dt.name = dtName;
+        Red.dt.power = 70;
+        Red.dt.playmake = 80;
+
+        Red.cb.name = dbName;
+        Red.cb.coverage = 90;
+        Red.cb.playmake = 90;
+
+        Red.qb.name = qbName;
+        Red.qb.thp = 60;
+        Red.qb.tha = 90;
+        Red.qb.mob = 10;
+
+
+        Red.wr.name = wrName;
+        Red.wr.catching = 80;
+        Red.wr.routerunning = 30;
+    }
+    public team[] defaultFullTeamImport(team reds, team blues){
+
+        team[] listofteams = {reds,blues};
+
+        return listofteams;
     }
 
 }

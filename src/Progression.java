@@ -12,7 +12,7 @@ public class Progression {
     final static int gamePassDeflectionThreshold = 15;
     final static int gameInterceptionThreshold = 2;
 
-    public static void qbGameProgression(player.quarterBack target){
+    public static void qbGameProgression(quarterBack target){
         if(target.completions/target.attempts >= gameAttemptThreshold){
             target.tha++;
         }
@@ -23,7 +23,7 @@ public class Progression {
             target.mob++;
         }
     }
-    public static void rbGameProgression(player.runningBack target){
+    public static void rbGameProgression(runningBack target){
         if(target.yards >= gameRushYardThreshold){
             target.elusive++;
         }
@@ -31,7 +31,7 @@ public class Progression {
             target.power++;
         }
     }
-    public static void cbGameProgression(player.defensiveBack target){
+    public static void cbGameProgression(defensiveBack target){
         if(target.passdefelctions >= gamePassDeflectionThreshold){
             target.coverage++;
         }
