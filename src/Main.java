@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     static Game game = new Game();
     public static void main(String[] args) {
+        GameUI gui = new GameUI("Java Football Sim", game);
         ImportTeams.initializeTeam(game.Reds, "Reds","Tom Brady", "Leonard Fournette", "Mike Evans", "Lavonte David", "Ndamukong Suh", "Carlton Davis");
         ImportTeams.initializeTeam(game.Blues, "Blues","Mac Jones", "Damien Harris", "Nelson Agholor", "Donta Hightower", "Vince Wilfork", "Stephon Gilmore");
         game.ball = 20;
@@ -16,30 +17,30 @@ public class Main {
         if (inputter.equals("B")){
             while(game.inGame){
                 if (game.RedBall){
-                    game.redPosession(game);
+                    game.redPosession(game, gui);
                 }
                 else{
-                    game.bluePosession(game);
+                    game.bluePosession(game, gui);
                 }
             }
         }
         else if (inputter.equals("A")){
             while(game.inGame){
                 if (game.RedBall){
-                    game.redPossessionAI(game);
+                    game.redPossessionAI(game, gui);
                 }
                 else{
-                    game.bluePosession(game);
+                    game.bluePosession(game, gui);
                 }
             }
         }
         else if(inputter.equals("S")){
             while(game.inGame){
                 if (game.RedBall){
-                    game.redPossessionAI(game);
+                    game.redPossessionAI(game, gui);
                 }
                 else{
-                    game.bluePossessionAI(game);
+                    game.bluePossessionAI(game, gui);
                 }
             }
         }
@@ -49,10 +50,10 @@ public class Main {
             for (int i = 0; i < 17; i++){
                 while(game.inGame){
                     if (game.RedBall){
-                        game.redPossessionAI(game);
+                        game.redPossessionAI(game, gui);
                     }
                     else{
-                        game.bluePossessionAI(game);
+                        game.bluePossessionAI(game, gui);
                     }
                 }
                 if (game.Bluescore >= game.Redscore){
@@ -77,10 +78,10 @@ public class Main {
             for (int i = 0; i < 340; i++){
                 while(game.inGame){
                     if (game.RedBall){
-                        game.redPossessionAI(game);
+                        game.redPossessionAI(game, gui);
                     }
                     else{
-                        game.bluePossessionAI(game);
+                        game.bluePossessionAI(game, gui);
                     }
                 }
                 if (game.Bluescore >= game.Redscore){

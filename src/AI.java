@@ -1,5 +1,6 @@
 public class AI {
-    public static String pickPlay(int clock, int playerScore, int aiScore, int down, int togo, int ball){
+    public static String pickPlay(Game game, int clock, int playerScore, int aiScore, int down, int togo, int ball){
+        game.playPicked = true;
         if (down == 4 && ball > 70){
             return "fg";
         }
