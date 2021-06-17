@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -7,6 +8,7 @@ public class Game {
     team Blues = new team();
     int Redscore = 0;
     int Bluescore = 0;
+    team winner;
     boolean RedBall = true;
     boolean BlueBall = false;
     team hasBall = Reds;
@@ -25,20 +27,16 @@ public class Game {
         inputter = inputToSend;
     }
     public void printStats(){
-        Reds.qb.printStats();
-        Reds.rb.printStats();
-        Reds.wr.printStats();
-        Reds.dt.printStats();
-        Reds.lb.printStats();
-        Reds.cb.printStats();
+        for (team team : Arrays.asList(Reds, Blues)) {
+            team.qb.printStats();
+            team.rb.printStats();
+            team.wr.printStats();
+            team.dt.printStats();
+            team.lb.printStats();
+            team.cb.printStats();
+        }
 
 
-        Blues.qb.printStats();
-        Blues.rb.printStats();
-        Blues.wr.printStats();
-        Blues.dt.printStats();
-        Blues.lb.printStats();
-        Blues.cb.printStats();
     }
     public void printScore(GameUI gui){
         gui.setScoreboard("hi");
@@ -99,65 +97,171 @@ public class Game {
             ball = Math.abs(100-ball);
         }
     }
-    public void redPossessionAI(Game game, GameUI gui){
+    public void posession(Game game, GameUI gui){
         down = 1;
         togo = 10;
-        gui.setPosessionIndicator(game.Reds.name + " Ball!");
+        gui.setPosessionIndicator(hasBall.name + " ball!");
         printScore(gui);
+        gui.repaint();
         while(gameOver() && RedBall){
             yardageGain = 0;
             liveStats(gui);
-            inputter = AI.pickPlay(game, gameClock,Bluescore,Redscore,down,togo,ball);
-            System.out.println(inputter);
-            if(inputter.equals("run") && playPicked == true){
-                yardageGain = (simulator.runPlay(gui,game, Reds.rb,Blues.lb, Blues.dt, Blues.cb));
+            if(inputter.equals("run") && playPicked){
+                yardageGain = (simulator.runPlay(gui,game, hasBall.rb,defense.lb, defense.dt, defense.cb));
                 ball += (int) yardageGain;
                 postPlay(17, gui);
                 if (ball > 100){
-                    gui.setLastPlay("Touchdown rush by " + Reds.rb.name+"!");
-                    Redscore += 7;
-                    Reds.rb.td++;
+                    gui.setLastPlay("Touchdown rush by " + hasBall.rb.name+"!");
+                    if(hasBall == Blues){
+                        Bluescore += 7;
+                    }
+                    else{
+                        Redscore += 7;
+                    }
+                    hasBall.rb.td++;
                     flipPosessions();
                     ball = 20;
                 }
                 else if (ball < 0){
-                    gui.setLastPlay("Safety by " + Blues.dt.name + "!");
-                    Bluescore += 2;
+                    gui.setLastPlay("Safety by " + defense.dt.name + "!");
+                    if(hasBall == Blues){
+                        Bluescore += 2;
+                    }
+                    else{
+                        Redscore += 2;
+                    }
                     flipPosessions();
                     ball = 30;
                 }
                 playPicked = false;
 
             }
-            else if(inputter.equals("pass") && playPicked == true){
-                yardageGain = (simulator.passPlay(gui,game, Reds.qb, Reds.wr, Blues.cb, Blues.dt));
+            else if(inputter.equals("pass") && playPicked){
+                yardageGain = (simulator.passPlay(gui,game, hasBall.qb, hasBall.wr, defense.cb, defense.dt));
                 ball += (int) yardageGain;
                 if (ball > 100){
-                    gui.setLastPlay(Reds.qb.name + " touchdown throw to " + Reds.wr.name + "!");
-                    Reds.qb.td++;
-                    Reds.wr.td++;
-                    Redscore += 7;
+                    gui.setLastPlay(hasBall.qb.name + " touchdown throw to " + hasBall.wr.name + "!");
+                    hasBall.qb.td++;
+                    hasBall.wr.td++;
+                    if(hasBall == Blues){
+                        Bluescore += 7;
+                    }
+                    else{
+                        Redscore += 7;
+                    }
+                    flipPosessions();
+                    ball = 20;
+                }
+                playPicked = false;
+            }
+            else if (inputter.equals("punt") && playPicked){
+                simulator.punt(gui,game);
+                flipPosessions();
+                playPicked = false;
+            }
+            else if (inputter.equals("fg") && playPicked){
+                if(simulator.fieldGoal(gui, game)){
+                    if(hasBall == Blues){
+                        Bluescore += 3;
+                    }
+                    else{
+                        Redscore += 3;
+                    }
+                }
+                flipPosessions();
+                ball = 20;
+            }
+            else if (inputter.equals("endgame") && playPicked){
+                endGame();
+            }
+        }
+        postPlay(17, gui);
+    }
+    public void possessionAI(Game game, GameUI gui){
+        down = 1;
+        togo = 10;
+        gui.setPosessionIndicator(game.hasBall.name + " Ball!");
+        printScore(gui);
+        while(gameOver() && RedBall){
+            yardageGain = 0;
+            liveStats(gui);
+            if(hasBall == Blues){
+                inputter = AI.pickPlay(game, gameClock,Bluescore,Redscore,down,togo,ball);
+            }
+            else{
+                inputter = AI.pickPlay(game, gameClock,Redscore,Bluescore,down,togo,ball);
+            }
+
+            System.out.println(inputter);
+            if(inputter.equals("run") && playPicked){
+                yardageGain = (simulator.runPlay(gui,game, hasBall.rb,defense.lb, defense.dt, defense.cb));
+                ball += (int) yardageGain;
+                postPlay(17, gui);
+                if (ball > 100){
+                    gui.setLastPlay("Touchdown rush by " + hasBall.rb.name+"!");
+                    if(hasBall == Blues){
+                        Bluescore += 7;
+                    }
+                    else{
+                        Redscore += 7;
+                    }
+                    hasBall.rb.td++;
+                    flipPosessions();
+                    ball = 20;
+                }
+                else if (ball < 0){
+                    gui.setLastPlay("Safety by " + defense.dt.name + "!");
+                    if(hasBall == Blues){
+                        Bluescore += 2;
+                    }
+                    else{
+                        Redscore += 2;
+                    }
+                    flipPosessions();
+                    ball = 30;
+                }
+                playPicked = false;
+
+            }
+            else if(inputter.equals("pass") && playPicked){
+                yardageGain = (simulator.passPlay(gui,game, hasBall.qb, hasBall.wr, defense.cb, defense.dt));
+                ball += (int) yardageGain;
+                if (ball > 100){
+                    gui.setLastPlay(hasBall.qb.name + " touchdown throw to " + hasBall.wr.name + "!");
+                    hasBall.qb.td++;
+                    hasBall.wr.td++;
+                    if(hasBall == Blues){
+                        Bluescore += 7;
+                    }
+                    else{
+                        Redscore += 7;
+                    }
                     flipPosessions();
                     ball = 20;
                     playPicked = false;
                 }
 
             }
-            else if (inputter.equals("punt") && playPicked == true){
+            else if (inputter.equals("punt") && playPicked){
                 simulator.punt(gui,game);
                 flipPosessions();
                 playPicked = false;
             }
 
-            else if (inputter.equals("fg") && playPicked == true){
+            else if (inputter.equals("fg") && playPicked){
                 if(simulator.fieldGoal(gui, game)){
-                    Redscore += 3;
+                    if(hasBall == Blues){
+                        Bluescore += 3;
+                    }
+                    else{
+                        Redscore += 3;
+                    }
                 }
                 flipPosessions();
                 ball = 20;
                 playPicked = false;
             }
-            else if (inputter.equals("endgame") && playPicked == true){
+            else if (inputter.equals("endgame") && playPicked){
                 endGame();
                 playPicked = false;
             }
@@ -165,143 +269,7 @@ public class Game {
         }
 
     }
-    public void redPosession(Game game, GameUI gui){
-        down = 1;
-        togo = 10;
-        gui.setPosessionIndicator(Reds.name + " ball!");
-        printScore(gui);
-        gui.repaint();
-        while(gameOver() && RedBall){
-            yardageGain = 0;
-            liveStats(gui);
-            if(inputter.equals("run") && playPicked == true){
-                yardageGain = (simulator.runPlay(gui,game, Reds.rb,Blues.lb, Blues.dt, Blues.cb));
-                ball += (int) yardageGain;
-                postPlay(17, gui);
-                if (ball > 100){
-                    gui.setLastPlay("Touchdown rush by " + Reds.rb.name+"!");
-                    Redscore += 7;
-                    Reds.rb.td++;
-                    flipPosessions();
-                    ball = 20;
-                }
-                else if (ball < 0){
-                    gui.setLastPlay("Safety by " + Blues.dt.name + "!");
-                    Bluescore += 2;
-                    flipPosessions();
-                    ball = 30;
-                }
-                playPicked = false;
 
-            }
-            else if(inputter.equals("pass") && playPicked == true){
-                yardageGain = (simulator.passPlay(gui,game, Reds.qb, Reds.wr, Blues.cb, Blues.dt));
-                ball += (int) yardageGain;
-                if (ball > 100){
-                    gui.setLastPlay(Reds.qb.name + " touchdown throw to " + Reds.wr.name + "!");
-                    Reds.qb.td++;
-                    Reds.wr.td++;
-                    Redscore += 7;
-                    flipPosessions();
-                    ball = 20;
-                }
-                playPicked = false;
-            }
-            else if (inputter.equals("punt") && playPicked == true){
-                simulator.punt(gui,game);
-                flipPosessions();
-                playPicked = false;
-            }
-            else if (inputter.equals("fg") && playPicked == true){
-                if(simulator.fieldGoal(gui, game)){
-                    Redscore += 3;
-                }
-                flipPosessions();
-                ball = 20;
-                playPicked = false;
-            }
-            else if (inputter.equals("endgame") && playPicked == true){
-                endGame();
-                playPicked = false;
-            }
-        }
-        postPlay(17, gui);
-    }
-    public void bluePossessionAI(Game game, GameUI gui){
-        down = 1;
-        togo = 10;
-        gui.setPosessionIndicator(game.Blues.name + " Ball!");
-        printScore(gui);
-        while(gameOver() && BlueBall){
-            yardageGain = 0;
-            liveStats(gui);
-            inputter = AI.pickPlay(game, gameClock,Redscore,Bluescore,down,togo,ball);
-            postPlay(17, gui);
-        }
-
-    }
-
-    public void bluePosession(Game game, GameUI gui){
-        down = 1;
-        togo = 10;
-        gui.setPosessionIndicator(Blues.name + " ball!");
-        printScore(gui);
-        while(gameOver() && BlueBall){
-            yardageGain = 0;
-            liveStats(gui);
-            if(inputter.equals("run") && playPicked == true){
-                yardageGain = (simulator.runPlay(gui,game, Blues.rb,Reds.lb, Reds.dt, Reds.cb));
-                ball += (int) yardageGain;
-                postPlay(17, gui);
-                if (ball > 100){
-                    gui.setLastPlay("Touchdown rush by " + Blues.rb.name+"!");
-                    Bluescore += 7;
-                    Blues.rb.td++;
-                    flipPosessions();
-                    ball = 20;
-                }
-                else if (ball < 0){
-                    gui.setLastPlay("Safety by " + Reds.dt.name + "!");
-                    Redscore += 2;
-                    flipPosessions();
-                    ball = 30;
-                }
-                playPicked = false;
-
-            }
-            else if(inputter.equals("pass") && playPicked == true){
-                yardageGain = (simulator.passPlay(gui,game, Blues.qb, Blues.wr, Reds.cb, Reds.dt));
-                ball += (int) yardageGain;
-                if (ball > 100){
-                    gui.setLastPlay(Blues.qb.name + " touchdown throw to " + Blues.wr.name + "!");
-                    Blues.qb.td++;
-                    Blues.wr.td++;
-                    Bluescore += 7;
-                    flipPosessions();
-                    ball = 20;
-                }
-                playPicked = false;
-            }
-            else if (inputter.equals("punt") && playPicked == true){
-                simulator.punt(gui,game);
-                flipPosessions();
-                playPicked = false;
-            }
-            else if (inputter.equals("fg") && playPicked == true){
-                if(simulator.fieldGoal(gui, game)){
-                    Bluescore += 3;
-                }
-                flipPosessions();
-                ball = 20;
-                playPicked = false;
-            }
-            else if (inputter.equals("endgame") && playPicked == true){
-                endGame();
-                playPicked = false;
-            }
-        }
-        postPlay(17, gui);
-    }
     public void flipPosessions(){
         RedBall = !RedBall;
         BlueBall = !BlueBall;
@@ -326,24 +294,22 @@ public class Game {
         }
     }
     public void endGame(){
-        inGame = false;
-        if(Redscore > Bluescore){
-            System.out.println(Reds.name + " win!");
+        if(Bluescore > Redscore){
+            winner = Blues;
         }
-        else if (Bluescore > Redscore){
-            System.out.println(Blues.name + " win!");
+        else if(Redscore > Bluescore){
+            winner = Reds;
         }
         else{
-            System.out.println("Tie!");
+            winner = null;
         }
-        System.out.println(Blues.name + " scored " + Bluescore);
-        System.out.println(Reds.name + " Reds scored " + Redscore);
-        System.out.println("End of game stats: ");
+        PostGame pg = new PostGame();
+        pg.setPostGame(this);
+        pg.setStats(this);
+        inGame = false;
         printStats();
     }
-    public void debug2(GameUI gui){
-        gui.setDebug2("This works please");
-    }
+
 
 
 

@@ -16,32 +16,22 @@ public class Main {
         game.inGame = true;
         if (inputter.equals("B")){
             while(game.inGame){
-                if (game.RedBall){
-                    game.redPosession(game, gui);
-                }
-                else{
-                    game.bluePosession(game, gui);
-                }
+                game.posession(game, gui);
             }
         }
         else if (inputter.equals("A")){
             while(game.inGame){
                 if (game.RedBall){
-                    game.redPossessionAI(game, gui);
+                    game.possessionAI(game, gui);
                 }
                 else{
-                    game.bluePosession(game, gui);
+                    game.posession(game, gui);
                 }
             }
         }
         else if(inputter.equals("S")){
             while(game.inGame){
-                if (game.RedBall){
-                    game.redPossessionAI(game, gui);
-                }
-                else{
-                    game.bluePossessionAI(game, gui);
-                }
+                game.possessionAI(game, gui);
             }
         }
         else if(inputter.equals("F")){
@@ -49,12 +39,7 @@ public class Main {
             int redTeamWins = 0;
             for (int i = 0; i < 17; i++){
                 while(game.inGame){
-                    if (game.RedBall){
-                        game.redPossessionAI(game, gui);
-                    }
-                    else{
-                        game.bluePossessionAI(game, gui);
-                    }
+                    game.possessionAI(game, gui);
                 }
                 if (game.Bluescore >= game.Redscore){
                     blueTeamWins++;
@@ -77,12 +62,7 @@ public class Main {
             int redTeamWins = 0;
             for (int i = 0; i < 340; i++){
                 while(game.inGame){
-                    if (game.RedBall){
-                        game.redPossessionAI(game, gui);
-                    }
-                    else{
-                        game.bluePossessionAI(game, gui);
-                    }
+                    game.possessionAI(game, gui);
                 }
                 if (game.Bluescore >= game.Redscore){
                     blueTeamWins++;
