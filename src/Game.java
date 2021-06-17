@@ -21,11 +21,7 @@ public class Game {
     public int togo = 10;
     public double yardageGain = 0;
     public boolean playPicked = false;
-    public Scanner input = new Scanner(System.in);
     String inputter;
-    public void sendInput(String inputToSend){
-        inputter = inputToSend;
-    }
     public void printStats(){
         for (team team : Arrays.asList(Reds, Blues)) {
             team.qb.printStats();

@@ -44,7 +44,7 @@ public class simulator {
 	}
 	public static double passPlay(GameUI gui, Game game, quarterBack qb, wideReciever wr, defensiveBack cb, noseTackle dt){
 		// (QB accuracy + route running - coverage) to find the probability of a catch
-		double catchProb = ((qb.tha + wr.routerunning - 0.7*cb.coverage)/100);
+		double catchProb = ((1.1*qb.tha + wr.routerunning - 0.7*cb.coverage)/100);
 		double yardsGained;
 		if(randomBool(catchProb)) {
 			yardsGained = randomNum(15+(qb.thp/10.0),4);
@@ -74,7 +74,7 @@ public class simulator {
 			game.gameClock -= 30;
 			return yardsGained;
 		}
-		else if(randomBool(dt.power * 0.005)){
+		else if(randomBool(dt.power * 0.0019)){
 			yardsGained = -8;
 			gui.setLastPlay(qb.name + " is sacked by " + dt.name + " for a loss of " + yardsGained + "!");
 			dt.sack++;

@@ -15,7 +15,11 @@ public class GameUI extends JFrame{
     private JLabel Scoreboard;
     private JLabel Clock;
     private JButton Debug1;
-    private JButton Debug2;
+    private JButton SimPlay;
+    private JList RedsRBList;
+    private JList BluesRBList;
+    private JList RedsWRList;
+    private JList BluesWRList;
     static Game game = new Game();
     static GameUI gui = new GameUI("Java Football sim :(", game);
     public GameUI(String title, Game game){
@@ -53,14 +57,34 @@ public class GameUI extends JFrame{
                 punt();
             }
         });
-        Debug2.addActionListener(new ActionListener() {
+        SimPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gameOver(game);
-                Debug2.setText(":(");
+                String temp;
+                if(game.hasBall == game.Blues){
+                    temp = AI.pickPlay(game, game.gameClock, game.Bluescore,game.Redscore,game.down,game.togo,game.ball);
+                }
+                else{
+                    temp = AI.pickPlay(game, game.gameClock, game.Redscore,game.Bluescore,game.down,game.togo,game.ball);
+                }
+                if(temp.equals("run")){
+                    RunPlay();
+                }
+                else if(temp.equals("pass")){
+                    passPlay();
+                }
+                else if(temp.equals("fg")){
+                    fieldGoal();
+                }
+                else if(temp.equals("punt")){
+                    punt();
+                }
+
             }
         });
         EndGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                game.gameClock = -10;
+                game.quarter = 5;
                 gameOver(game);
                 game.endGame();
             }
@@ -75,6 +99,7 @@ public class GameUI extends JFrame{
         if(teams.equals("default")){
             ImportTeams.importDefaultTeams(game.Reds, game.Blues);
         }
+        gui.setTables();
         game.ball = 20;
         while(game.inGame){
             game.posession(game, gui);
@@ -132,8 +157,26 @@ public class GameUI extends JFrame{
         gui.PosessionIndicator.setText(game.hasBall.name + " Ball");
     }
     public void RunPlay(){
+        runningBack targetRB;
+        targetRB = game.hasBall.rb;
         gameOver(game);
-        game.yardageGain = (simulator.runPlay(gui,game, game.hasBall.rb,game.defense.lb, game.defense.dt, game.defense.cb));
+        if(game.hasBall == game.Reds){
+            if(RedsRBList.getSelectedIndex()==1){
+                targetRB = game.Reds.rb2;
+            }
+            else{
+                targetRB = game.Reds.rb;
+            }
+        }
+        else{
+            if(BluesRBList.getSelectedIndex()==1){
+                targetRB = game.Blues.rb2;
+            }
+            else{
+                targetRB = game.Blues.rb;
+            }
+        }
+        game.yardageGain = (simulator.runPlay(gui,game, targetRB,game.defense.lb, game.defense.dt, game.defense.cb));
         game.ball += (int) game.yardageGain;
         game.postPlay(17, gui);
         if (game.ball > 100){
@@ -164,8 +207,27 @@ public class GameUI extends JFrame{
         setGraphics();
     }
     public void passPlay(){
+        wideReciever targetWR;
+        targetWR = game.hasBall.wr;
         gameOver(game);
-        game.yardageGain = (simulator.passPlay(gui,game, game.hasBall.qb, game.hasBall.wr, game.defense.cb, game.defense.dt));
+        if(game.Reds==game.hasBall){
+
+            if(RedsWRList.getSelectedIndex()==1){
+                targetWR = game.Reds.wr2;
+            }
+            else{
+                targetWR = game.Reds.wr;
+            }
+        }
+        else if(game.Blues==game.hasBall){
+            if(BluesWRList.getSelectedIndex()==1){
+                targetWR = game.Blues.wr2;
+            }
+            else{
+                targetWR = game.Blues.wr;
+            }
+        }
+        game.yardageGain = (simulator.passPlay(gui,game, game.hasBall.qb, targetWR, game.defense.cb, game.defense.dt));
         game.ball += (int) game.yardageGain;
         game.postPlay(17, gui);
         if (game.ball > 100){
@@ -202,5 +264,11 @@ public class GameUI extends JFrame{
             game.ball = 20;
         }
         setGraphics();
+    }
+    public void setTables(){
+        RedsRBList.setListData(new String[] {game.Reds.rb.name,game.Reds.rb2.name});
+        RedsWRList.setListData(new String[] {game.Reds.wr.name, game.Reds.wr2.name});
+        BluesRBList.setListData(new String[] {game.Blues.rb.name, game.Blues.rb2.name});
+        BluesWRList.setListData(new String[] {game.Blues.wr.name, game.Blues.wr2.name});
     }
 }

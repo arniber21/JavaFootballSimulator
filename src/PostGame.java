@@ -36,12 +36,16 @@ public class PostGame extends JFrame{
         String[][] rushStats = {
                 {"team","Name", "Attempts", "Yards", "YPA","Touchdowns"},
                 {game.Blues.name, game.Blues.rb.name,String.valueOf(game.Blues.rb.attempts), String.valueOf(game.Blues.rb.yards), String.valueOf(game.Blues.rb.yards/game.Blues.rb.attempts)},
-                {game.Reds.name,game.Reds.rb.name,String.valueOf(game.Reds.rb.attempts), String.valueOf(game.Reds.rb.yards), String.valueOf(game.Reds.rb.yards/game.Reds.rb.attempts)}
+                {game.Reds.name,game.Reds.rb.name,String.valueOf(game.Reds.rb.attempts), String.valueOf(game.Reds.rb.yards), String.valueOf(game.Reds.rb.yards/game.Reds.rb.attempts)},
+                {game.Blues.name, game.Blues.rb2.name,String.valueOf(game.Blues.rb2.attempts), String.valueOf(game.Blues.rb2.yards), String.valueOf(game.Blues.rb2.yards/game.Blues.rb2.attempts)},
+                {game.Reds.name,game.Reds.rb2.name,String.valueOf(game.Reds.rb2.attempts), String.valueOf(game.Reds.rb2.yards), String.valueOf(game.Reds.rb2.yards/game.Reds.rb2.attempts)}
         };
         String[][] recieveStats = {
                 {"team","Name", "Catches", "Yards", "Touchdowns"},
                 {game.Blues.name, game.Blues.wr.name, String.valueOf(game.Blues.wr.receptions), String.valueOf(game.Blues.wr.yards), String.valueOf(game.Blues.wr.td)},
-                {game.Reds.name, game.Reds.wr.name, String.valueOf(game.Reds.wr.receptions), String.valueOf(game.Reds.wr.yards), String.valueOf(game.Reds.wr.td)}
+                {game.Reds.name, game.Reds.wr.name, String.valueOf(game.Reds.wr.receptions), String.valueOf(game.Reds.wr.yards), String.valueOf(game.Reds.wr.td)},
+                {game.Blues.name, game.Blues.wr2.name, String.valueOf(game.Blues.wr2.receptions), String.valueOf(game.Blues.wr2.yards), String.valueOf(game.Blues.wr2.td)},
+                {game.Reds.name, game.Reds.wr2.name, String.valueOf(game.Reds.wr2.receptions), String.valueOf(game.Reds.wr2.yards), String.valueOf(game.Reds.wr2.td)}
         };
         String [][] defenceStats = {
                 {"team","Name", "Tackles","TFLs", "Sacks", "Deflections", "Interceptions"},

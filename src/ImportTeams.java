@@ -12,9 +12,15 @@ public class ImportTeams {
         Red.rb.elusive = 20;
         Red.rb.power = 10;
 
+        Red.rb2.name = "Ronald Jones";
+        Red.rb2.speed = 60;
+        Red.rb2.elusive = 50;
+        Red.rb2.power = 70;
+
         Red.lb.name = "Lavonte David";
         Red.lb.playmake = 70;
         Red.lb.power = 70;
+
 
         Red.dt.name = "Ndamukong Suh";
         Red.dt.power = 70;
@@ -34,6 +40,9 @@ public class ImportTeams {
         Red.wr.catching = 80;
         Red.wr.routerunning = 30;
 
+        Red.wr2.name = "Mike Evans";
+        Red.wr2.catching = 90;
+        Red.wr2.routerunning = 10;
 
 
         Blue.rb.name = "Damien Harris";
@@ -41,6 +50,10 @@ public class ImportTeams {
         Blue.rb.elusive = 20;
         Blue.rb.power = 10;
 
+        Blue.rb2.name = "James White";
+        Blue.rb2.speed = 70;
+        Blue.rb2.elusive = 90;
+        Blue.rb2.power = 40;
 
         Blue.lb.name = "Donta Hightower";
         Blue.lb.playmake = 80;
@@ -63,6 +76,10 @@ public class ImportTeams {
         Blue.wr.name = "Julian Edelman";
         Blue.wr.catching = 80;
         Blue.wr.routerunning = 30;
+
+        Blue.wr2.name = "Nelson Agholor";
+        Blue.wr2.catching = 50;
+        Blue.wr2.routerunning = 80;
     }
     public static void initializeTeam(team Red, String name, String qbName, String rbName, String wrName, String lbName, String dtName, String dbName){
         Red.name = name;
