@@ -85,10 +85,11 @@ public class Game {
         gui.setPosessionIndicator(hasBall.name + " ball!");
         printScore(gui);
         gui.repaint();
+        inputter = "";
         while(gameOver() && RedBall){
             yardageGain = 0;
             liveStats(gui);
-            if(inputter.equals("run") && playPicked){
+            if(inputter.equals("run") || playPicked){
                 yardageGain = (simulator.runPlay(gui,game, hasBall.rb,defense.lb, defense.dt, defense.cb));
                 ball += (int) yardageGain;
                 postPlay(17, gui);

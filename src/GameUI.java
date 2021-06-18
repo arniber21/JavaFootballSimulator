@@ -44,7 +44,7 @@ public class GameUI extends JFrame{
         });
         Run.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RunPlay();
+                RunPlay(game.hasBall.rb);
             }
         });
         Pass.addActionListener(new ActionListener() {
@@ -67,7 +67,7 @@ public class GameUI extends JFrame{
                     temp = AI.pickPlay(game, game.gameClock, game.Redscore,game.Bluescore,game.down,game.togo,game.ball);
                 }
                 if(temp.equals("run")){
-                    RunPlay();
+                    RunPlay((runningBack) player.randomPlayer(new runningBack[]{game.hasBall.rb, game.hasBall.rb2}));
                 }
                 else if(temp.equals("pass")){
                     passPlay();
@@ -156,9 +156,9 @@ public class GameUI extends JFrame{
         gui.setStatusBar(game.down,game.togo,String.join("=",visualBar),game.ball);
         gui.PosessionIndicator.setText(game.hasBall.name + " Ball");
     }
-    public void RunPlay(){
+    public void RunPlay(runningBack rb){
         runningBack targetRB;
-        targetRB = game.hasBall.rb;
+        targetRB = rb;
         gameOver(game);
         if(game.hasBall == game.Reds){
             if(RedsRBList.getSelectedIndex()==1){
