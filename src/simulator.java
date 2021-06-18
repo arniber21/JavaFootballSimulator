@@ -12,11 +12,11 @@ public class simulator {
 	public static double runPlay(GameUI gui, Game game, runningBack rb, lineBacker lb, noseTackle nt, defensiveBack db)
 	{
 		double yardsGained;
-		double LB = (((lb.playmake + lb.power)/2)/100)/20 + 0.5;
-		double TFL = ((((nt.playmake + nt.power)/2 )/100)/20/5) + 0.2;
+		double LB = (((lb.playmake + lb.power - 0.5 * rb.power)/2)/100)/20 + 0.5;
+		double TFL = ((((nt.playmake + nt.power - 0.5 * rb.power)/2)/100)/20/5) - 0.1;
 		if (randomBool(TFL)){
 			nt.tfl++;
-			yardsGained = (int) randomNum(3,-5);
+			yardsGained = (int) randomNum(0,-5);
 			rb.yards += yardsGained;
 			rb.attempts++;
 			game.gameClock -= 30;
@@ -26,7 +26,7 @@ public class simulator {
 		else if (randomBool(LB)){
 			lb.tackles++;
 			rb.attempts++;
-			yardsGained = (int) randomNum(3,(((lb.playmake + lb.power)/2)/100)*7);
+			yardsGained = (int) randomNum((((lb.playmake + lb.power)/2)/100)*7,3);
 			rb.yards += yardsGained;
 			game.gameClock -= 30;
 			gui.setLastPlay(yardsGained + " yard rush by " + rb.name);
@@ -35,7 +35,7 @@ public class simulator {
 		else{
 			db.tackles++;
 			rb.attempts++;
-			yardsGained =  (int) randomNum(15,(((rb.speed+rb.elusive)/2)/100)*20);
+			yardsGained =  (int) randomNum((((rb.speed+rb.elusive)/2)/100)*20,15);
 			rb.yards += yardsGained;
 			game.gameClock -= 30;
 			gui.setLastPlay(yardsGained + " yard rush by " + rb.name);
@@ -44,7 +44,7 @@ public class simulator {
 	}
 	public static double passPlay(GameUI gui, Game game, quarterBack qb, wideReciever wr, defensiveBack cb, noseTackle dt){
 		// (QB accuracy + route running - coverage) to find the probability of a catch
-		double catchProb = ((1.1*qb.tha + wr.routerunning - 0.7*cb.coverage)/100);
+		double catchProb = ((1.1*qb.tha + 0.5*wr.routerunning + 0.5*wr.catching - 0.9*cb.coverage)/100);
 		double yardsGained;
 		if(randomBool(catchProb)) {
 			yardsGained = randomNum(15+(qb.thp/10.0),4);
@@ -57,7 +57,7 @@ public class simulator {
 			gui.setLastPlay(qb.name + " throw to " + wr.name + " for " + yardsGained + " yards");
 			return yardsGained;
 		}
-		else if (randomBool(cb.playmake*0.05/100)){
+		else if (randomBool(cb.playmake/100)){
 			qb.interceptions++;
 			cb.interceptions++;
 			qb.attempts++;
