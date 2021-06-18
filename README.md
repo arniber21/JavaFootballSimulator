@@ -13,3 +13,12 @@ A simple java football simulator in order to learn java and stuff about oop. Sug
  - Autogenerate players
  - Make players better
  - Invidual plays a thing
+## Concepts used/learned: 
+ - Objects and Classes
+ - Custom Data Types (Objects)
+ - Inheritance
+ - Conditionals
+ - Reading Arrays
+ - Data Types
+ - UI with Swing
+ - Multiple UIs
