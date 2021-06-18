@@ -21,6 +21,12 @@ public class GameMenu extends JFrame{
                 GameUI.playBothSides("default");
             }
         });
+        SimGame.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
     public static void main(String[] args){
         JFrame window = new GameMenu("Java Football Simulator");

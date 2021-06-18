@@ -183,7 +183,7 @@ public class GameUI extends JFrame{
             gui.setLastPlay("Touchdown rush by " + game.hasBall.rb.name+"!");
             if(game.hasBall == game.Blues){
                 game.Bluescore += 7;
-                game.Blues.rb.td++;
+                targetRB.td++;
             }
             else{
                 game.Redscore += 7;
@@ -233,7 +233,7 @@ public class GameUI extends JFrame{
         if (game.ball > 100){
             gui.setLastPlay(game.hasBall.qb.name + " touchdown throw to " + game.hasBall.wr.name + "!");
             game.hasBall.qb.td++;
-            game.hasBall.wr.td++;
+            targetWR.td++;
             if (game.hasBall == game.Blues){
                 game.Bluescore += 7;
             }
