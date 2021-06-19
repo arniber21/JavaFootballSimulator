@@ -266,9 +266,9 @@ public class GameUI extends JFrame{
         setGraphics();
     }
     public void setTables(){
-        RedsRBList.setListData(new String[] {game.Reds.rb.name,game.Reds.rb2.name});
-        RedsWRList.setListData(new String[] {game.Reds.wr.name, game.Reds.wr2.name});
-        BluesRBList.setListData(new String[] {game.Blues.rb.name, game.Blues.rb2.name});
-        BluesWRList.setListData(new String[] {game.Blues.wr.name, game.Blues.wr2.name});
+        RedsRBList.setListData(new String[] {game.Reds.rb.name,game.Reds.rb2.name, game.Reds.rb3.name});
+        RedsWRList.setListData(new String[] {game.Reds.wr.name, game.Reds.wr2.name, game.Reds.wr3.name, game.Reds.wr4.name, game.Reds.wr5.name, game.Reds.wr6.name});
+        BluesRBList.setListData(new String[] {game.Blues.rb.name, game.Blues.rb2.name, game.Blues.rb3.name});
+        BluesWRList.setListData(new String[] {game.Blues.wr.name, game.Blues.wr2.name, game.Blues.wr3.name, game.Blues.wr4.name, game.Blues.wr5.name, game.Blues.wr6.name});
     }
 }

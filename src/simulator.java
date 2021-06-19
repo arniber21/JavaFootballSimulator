@@ -43,10 +43,10 @@ public class simulator {
 		}
 	}
 	public static double passPlay(GameUI gui, Game game, quarterBack qb, wideReciever wr, defensiveBack cb, noseTackle dt){
-		double catchProb = ((1.1*qb.tha + 0.5*wr.routerunning + 0.5*wr.catching - 0.9*cb.coverage)/100 - 0.1);
+		double catchProb = ((1*qb.tha + 0.2*wr.routerunning + 0.8*wr.catching - 0.9*cb.coverage)/100 - 0.1);
 		double yardsGained;
 		if(randomBool(catchProb)) {
-			yardsGained = randomNum(15+(qb.thp/10.0),4);
+			yardsGained = randomNum(15+(qb.thp + wr.routerunning/20.0),4);
 			qb.attempts++;
 			qb.completions++;
 			cb.tackles++;

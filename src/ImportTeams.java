@@ -17,6 +17,11 @@ public class ImportTeams {
         Red.rb2.elusive = 50;
         Red.rb2.power = 70;
 
+        Red.rb3.name = "LeShaun McCoy";
+        Red.rb3.speed = 30;
+        Red.rb3.elusive = 30;
+        Red.rb3.power = 90;
+
         Red.lb.name = "Lavonte David";
         Red.lb.playmake = 70;
         Red.lb.power = 70;
@@ -44,6 +49,22 @@ public class ImportTeams {
         Red.wr2.catching = 90;
         Red.wr2.routerunning = 10;
 
+        Red.wr3.name = "Scotty Miller";
+        Red.wr3.catching = 10;
+        Red.wr3.routerunning = 90;
+
+        Red.wr4.name = "Antonio Brown";
+        Red.wr4.catching = 50;
+        Red.wr4.routerunning = 50;
+
+        Red.wr5.name = "Tyler Johnson";
+        Red.wr5.catching = 70;
+        Red.wr5.routerunning = 10;
+
+        Red.wr5.name = "Justin Watson";
+        Red.wr5.catching = 10;
+        Red.wr5.routerunning = 70;
+
 
         Blue.rb.name = "Damien Harris";
         Blue.rb.speed = 90;
@@ -54,6 +75,11 @@ public class ImportTeams {
         Blue.rb2.speed = 70;
         Blue.rb2.elusive = 90;
         Blue.rb2.power = 40;
+
+        Blue.rb2.name = "Sony Michel";
+        Blue.rb2.speed = 50;
+        Blue.rb2.elusive = 50;
+        Blue.rb2.power = 10;
 
         Blue.lb.name = "Donta Hightower";
         Blue.lb.playmake = 80;
@@ -74,12 +100,28 @@ public class ImportTeams {
         Blue.qb.mob = 10;
 
         Blue.wr.name = "Julian Edelman";
-        Blue.wr.catching = 80;
-        Blue.wr.routerunning = 30;
+        Blue.wr.catching = 50;
+        Blue.wr.routerunning = 70;
 
         Blue.wr2.name = "Nelson Agholor";
         Blue.wr2.catching = 50;
         Blue.wr2.routerunning = 80;
+
+        Blue.wr3.name = "Nkeal Harry";
+        Blue.wr3.catching = 90;
+        Blue.wr3.routerunning = 10;
+
+        Blue.wr4.name = "Jacobi Meyers";
+        Blue.wr4.catching = 20;
+        Blue.wr4.routerunning = 70;
+
+        Blue.wr5.name = "Wes Welker";
+        Blue.wr5.catching = 60;
+        Blue.wr5.routerunning = 50;
+
+        Blue.wr6.name = "Mathew Slater";
+        Blue.wr6.catching = 20;
+        Blue.wr6.routerunning = 90;
     }
     public static void initializeTeam(team Red, String name, String qbName, String rbName, String wrName, String lbName, String dtName, String dbName){
         Red.name = name;
