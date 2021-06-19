@@ -49,7 +49,7 @@ public class GameUI extends JFrame{
         });
         Pass.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                passPlay();
+                passPlay(game.hasBall.wr);
             }
         });
         Punt.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class GameUI extends JFrame{
                     RunPlay((runningBack) player.randomPlayer(new runningBack[]{game.hasBall.rb, game.hasBall.rb2, game.hasBall.rb3}));
                 }
                 else if(temp.equals("pass")){
-                    passPlay();
+                    passPlay((wideReciever) player.randomPlayer(new wideReciever[]{game.hasBall.wr,game.hasBall.wr2,game.hasBall.wr3,game.hasBall.wr4,game.hasBall.wr5,game.hasBall.wr6}));
                 }
                 else if(temp.equals("fg")){
                     fieldGoal();
@@ -172,7 +172,7 @@ public class GameUI extends JFrame{
                 game.Reds.rb2.stamina += 5;
                 targetRB = game.Reds.rb3;
             }
-            else{
+            else if(RedsRBList.getSelectedIndex()==0){
                 game.Reds.rb3.stamina += 5;
                 game.Reds.rb2.stamina += 5;
                 targetRB = game.Reds.rb;
@@ -189,7 +189,7 @@ public class GameUI extends JFrame{
                 game.Blues.rb2.stamina += 5;
                 targetRB = game.Blues.rb3;
             }
-            else{
+            else if(BluesRBList.getSelectedIndex()==0){
                 game.Blues.rb3.stamina += 5;
                 game.Blues.rb2.stamina += 5;
                 targetRB = game.Blues.rb;
@@ -234,9 +234,9 @@ public class GameUI extends JFrame{
         }
         setGraphics();
     }
-    public void passPlay(){
+    public void passPlay(wideReciever wr){
         wideReciever targetWR;
-        targetWR = game.hasBall.wr;
+        targetWR = wr;
         gameOver(game);
         if(game.Reds==game.hasBall){
 
@@ -282,7 +282,7 @@ public class GameUI extends JFrame{
                 game.Reds.wr5.stamina += 5;
                 targetWR  = game.Reds.wr6;
             }
-            else{
+            else if(RedsWRList.getSelectedIndex()==0){
                 targetWR = game.Reds.wr;
                 game.Reds.wr2.stamina += 5;
                 game.Reds.wr3.stamina += 5;
@@ -334,7 +334,7 @@ public class GameUI extends JFrame{
                 game.Blues.wr5.stamina += 5;
                 targetWR  = game.Blues.wr6;
             }
-            else{
+            else if(BluesWRList.getSelectedIndex()==0){
                 targetWR = game.Blues.wr;
                 game.Blues.wr2.stamina += 5;
                 game.Blues.wr3.stamina += 5;
