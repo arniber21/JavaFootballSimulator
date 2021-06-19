@@ -67,7 +67,7 @@ public class GameUI extends JFrame{
                     temp = AI.pickPlay(game, game.gameClock, game.Redscore,game.Bluescore,game.down,game.togo,game.ball);
                 }
                 if(temp.equals("run")){
-                    RunPlay((runningBack) player.randomPlayer(new runningBack[]{game.hasBall.rb, game.hasBall.rb2}));
+                    RunPlay((runningBack) player.randomPlayer(new runningBack[]{game.hasBall.rb, game.hasBall.rb2, game.hasBall.rb3}));
                 }
                 else if(temp.equals("pass")){
                     passPlay();
@@ -155,6 +155,7 @@ public class GameUI extends JFrame{
         visualBar[ballIndex] = "|";
         gui.setStatusBar(game.down,game.togo,String.join("=",visualBar),game.ball);
         gui.PosessionIndicator.setText(game.hasBall.name + " Ball");
+        setTables();
     }
     public void RunPlay(runningBack rb){
         runningBack targetRB;
@@ -163,19 +164,46 @@ public class GameUI extends JFrame{
         if(game.hasBall == game.Reds){
             if(RedsRBList.getSelectedIndex()==1){
                 targetRB = game.Reds.rb2;
+                game.Reds.rb.stamina += 5;
+                game.Reds.rb3.stamina += 5;
+            }
+            else if(RedsRBList.getSelectedIndex()==2){
+                game.Reds.rb.stamina += 5;
+                game.Reds.rb2.stamina += 5;
+                targetRB = game.Reds.rb3;
             }
             else{
+                game.Reds.rb3.stamina += 5;
+                game.Reds.rb2.stamina += 5;
                 targetRB = game.Reds.rb;
             }
         }
         else{
             if(BluesRBList.getSelectedIndex()==1){
                 targetRB = game.Blues.rb2;
+                game.Blues.rb.stamina += 5;
+                game.Blues.rb3.stamina += 5;
+            }
+            else if(BluesRBList.getSelectedIndex()==2){
+                game.Blues.rb.stamina += 5;
+                game.Blues.rb2.stamina += 5;
+                targetRB = game.Blues.rb3;
             }
             else{
+                game.Blues.rb3.stamina += 5;
+                game.Blues.rb2.stamina += 5;
                 targetRB = game.Blues.rb;
             }
         }
+        targetRB.elusive *= targetRB.stamina/100;
+        targetRB.speed *= targetRB.stamina/100;
+        targetRB.power *= targetRB.stamina/100;
+        game.Reds.rb.setStamina();
+        game.Reds.rb2.setStamina();
+        game.Reds.rb3.setStamina();
+        game.Blues.rb.setStamina();
+        game.Blues.rb2.setStamina();
+        game.Blues.rb3.setStamina();
         game.yardageGain = (simulator.runPlay(gui,game, targetRB,game.defense.lb, game.defense.dt, game.defense.cb));
         game.ball += (int) game.yardageGain;
         game.postPlay(17, gui);
@@ -213,20 +241,122 @@ public class GameUI extends JFrame{
         if(game.Reds==game.hasBall){
 
             if(RedsWRList.getSelectedIndex()==1){
+                game.Reds.wr.stamina += 5;
                 targetWR = game.Reds.wr2;
+                game.Reds.wr3.stamina += 5;
+                game.Reds.wr4.stamina += 5;
+                game.Reds.wr5.stamina += 5;
+                game.Reds.wr6.stamina += 5;
+            }
+            else if(RedsWRList.getSelectedIndex()==2){
+                game.Reds.wr.stamina += 5;
+                game.Reds.wr2.stamina += 5;
+                targetWR  = game.Reds.wr3;
+                game.Reds.wr4.stamina += 5;
+                game.Reds.wr5.stamina += 5;
+                game.Reds.wr6.stamina += 5;
+
+            }
+            else if(RedsWRList.getSelectedIndex()==3){
+                game.Reds.wr.stamina += 5;
+                game.Reds.wr2.stamina += 5;
+                game.Reds.wr3.stamina += 5;
+                targetWR  = game.Reds.wr4;
+                game.Reds.wr5.stamina += 5;
+                game.Reds.wr6.stamina += 5;
+
+            }
+            else if(RedsWRList.getSelectedIndex()==4){
+                game.Reds.wr.stamina += 5;
+                game.Reds.wr2.stamina += 5;
+                game.Reds.wr3.stamina += 5;
+                game.Reds.wr4.stamina += 5;
+                targetWR  = game.Reds.wr5;
+                game.Reds.wr6.stamina += 5;
+            }
+            else if(RedsWRList.getSelectedIndex()==5){
+                game.Reds.wr.stamina += 5;
+                game.Reds.wr2.stamina += 5;
+                game.Reds.wr3.stamina += 5;
+                game.Reds.wr4.stamina += 5;
+                game.Reds.wr5.stamina += 5;
+                targetWR  = game.Reds.wr6;
             }
             else{
                 targetWR = game.Reds.wr;
+                game.Reds.wr2.stamina += 5;
+                game.Reds.wr3.stamina += 5;
+                game.Reds.wr4.stamina += 5;
+                game.Reds.wr5.stamina += 5;
+                game.Reds.wr6.stamina += 5;
             }
         }
-        else if(game.Blues==game.hasBall){
+        else{
             if(BluesWRList.getSelectedIndex()==1){
+                game.Blues.wr.stamina += 5;
                 targetWR = game.Blues.wr2;
+                game.Blues.wr3.stamina += 5;
+                game.Blues.wr4.stamina += 5;
+                game.Blues.wr5.stamina += 5;
+                game.Blues.wr6.stamina += 5;
+            }
+            else if(BluesWRList.getSelectedIndex()==2){
+                game.Blues.wr.stamina += 5;
+                game.Blues.wr2.stamina += 5;
+                targetWR  = game.Blues.wr3;
+                game.Blues.wr4.stamina += 5;
+                game.Blues.wr5.stamina += 5;
+                game.Blues.wr6.stamina += 5;
+
+            }
+            else if(BluesWRList.getSelectedIndex()==3){
+                game.Blues.wr.stamina += 5;
+                game.Blues.wr2.stamina += 5;
+                game.Blues.wr3.stamina += 5;
+                targetWR  = game.Blues.wr4;
+                game.Blues.wr5.stamina += 5;
+                game.Blues.wr6.stamina += 5;
+
+            }
+            else if(BluesWRList.getSelectedIndex()==4){
+                game.Blues.wr.stamina += 5;
+                game.Blues.wr2.stamina += 5;
+                game.Blues.wr3.stamina += 5;
+                game.Blues.wr4.stamina += 5;
+                targetWR  = game.Blues.wr5;
+                game.Blues.wr6.stamina += 5;
+            }
+            else if(BluesWRList.getSelectedIndex()==5){
+                game.Blues.wr.stamina += 5;
+                game.Blues.wr2.stamina += 5;
+                game.Blues.wr3.stamina += 5;
+                game.Blues.wr4.stamina += 5;
+                game.Blues.wr5.stamina += 5;
+                targetWR  = game.Blues.wr6;
             }
             else{
                 targetWR = game.Blues.wr;
+                game.Blues.wr2.stamina += 5;
+                game.Blues.wr3.stamina += 5;
+                game.Blues.wr4.stamina += 5;
+                game.Blues.wr5.stamina += 5;
+                game.Blues.wr6.stamina += 5;
             }
         }
+        targetWR.catching *= targetWR.stamina/100;
+        targetWR.routerunning *= targetWR.stamina/100;
+        game.Reds.wr.setStamina();
+        game.Reds.wr2.setStamina();
+        game.Reds.wr3.setStamina();
+        game.Reds.wr4.setStamina();
+        game.Reds.wr5.setStamina();
+        game.Reds.wr6.setStamina();
+        game.Blues.wr.setStamina();
+        game.Blues.wr2.setStamina();
+        game.Blues.wr3.setStamina();
+        game.Blues.wr4.setStamina();
+        game.Blues.wr5.setStamina();
+        game.Blues.wr6.setStamina();
         game.yardageGain = (simulator.passPlay(gui,game, game.hasBall.qb, targetWR, game.defense.cb, game.defense.dt));
         game.ball += (int) game.yardageGain;
         game.postPlay(17, gui);
@@ -266,9 +396,9 @@ public class GameUI extends JFrame{
         setGraphics();
     }
     public void setTables(){
-        RedsRBList.setListData(new String[] {game.Reds.rb.name,game.Reds.rb2.name, game.Reds.rb3.name});
-        RedsWRList.setListData(new String[] {game.Reds.wr.name, game.Reds.wr2.name, game.Reds.wr3.name, game.Reds.wr4.name, game.Reds.wr5.name, game.Reds.wr6.name});
-        BluesRBList.setListData(new String[] {game.Blues.rb.name, game.Blues.rb2.name, game.Blues.rb3.name});
-        BluesWRList.setListData(new String[] {game.Blues.wr.name, game.Blues.wr2.name, game.Blues.wr3.name, game.Blues.wr4.name, game.Blues.wr5.name, game.Blues.wr6.name});
+        RedsRBList.setListData(new String[] {(game.Reds.rb.name + "      Stamina: " + game.Reds.rb.stamina),game.Reds.rb2.name + "      Stamina: " + game.Reds.rb2.stamina, game.Reds.rb3.name + "      Stamina: " + game.Reds.rb3.stamina});
+        RedsWRList.setListData(new String[] {game.Reds.wr.name + "      Stamina: " + game.Reds.wr.stamina, game.Reds.wr2.name + "      Stamina: " + game.Reds.wr2.stamina, game.Reds.wr3.name + "      Stamina: " + game.Reds.wr3.stamina, game.Reds.wr4.name + "      Stamina: " + game.Reds.wr4.stamina, game.Reds.wr5.name + "      Stamina: " + game.Reds.wr5.stamina, game.Reds.wr6.name + "      Stamina: " + game.Reds.wr6.stamina});
+        BluesRBList.setListData(new String[] {(game.Blues.rb.name + "      Stamina: " + game.Blues.rb.stamina),game.Blues.rb2.name + "      Stamina: " + game.Blues.rb2.stamina, game.Blues.rb3.name + "      Stamina: " + game.Blues.rb3.stamina});
+        BluesWRList.setListData(new String[] {game.Blues.wr.name + "      Stamina: " + game.Blues.wr.stamina, game.Blues.wr2.name + "      Stamina: " + game.Blues.wr2.stamina, game.Blues.wr3.name + "      Stamina: " + game.Blues.wr3.stamina, game.Blues.wr4.name + "      Stamina: " + game.Blues.wr4.stamina, game.Blues.wr5.name + "      Stamina: " + game.Blues.wr5.stamina, game.Blues.wr6.name + "      Stamina: " + game.Blues.wr6.stamina});
     }
 }

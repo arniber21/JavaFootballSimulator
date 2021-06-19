@@ -61,9 +61,9 @@ public class ImportTeams {
         Red.wr5.catching = 70;
         Red.wr5.routerunning = 10;
 
-        Red.wr5.name = "Justin Watson";
-        Red.wr5.catching = 10;
-        Red.wr5.routerunning = 70;
+        Red.wr6.name = "Justin Watson";
+        Red.wr6.catching = 10;
+        Red.wr6.routerunning = 70;
 
 
         Blue.rb.name = "Damien Harris";
@@ -76,10 +76,10 @@ public class ImportTeams {
         Blue.rb2.elusive = 90;
         Blue.rb2.power = 40;
 
-        Blue.rb2.name = "Sony Michel";
-        Blue.rb2.speed = 50;
-        Blue.rb2.elusive = 50;
-        Blue.rb2.power = 10;
+        Blue.rb3.name = "Sony Michel";
+        Blue.rb3.speed = 50;
+        Blue.rb3.elusive = 50;
+        Blue.rb3.power = 10;
 
         Blue.lb.name = "Donta Hightower";
         Blue.lb.playmake = 80;
