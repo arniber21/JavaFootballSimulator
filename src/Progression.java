@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 
 public class Progression {
     final static double gameAttemptThreshold = 0.7;

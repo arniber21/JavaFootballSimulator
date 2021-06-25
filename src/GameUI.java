@@ -105,6 +105,16 @@ public class GameUI extends JFrame{
             game.posession(game, gui);
         }
     }
+    public static void playBothSides(team Reds, team Blues){
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        ImportTeams.importDefaultTeams(Reds, Blues);
+        gui.setTables();
+        game.ball = 20;
+        while(game.inGame){
+            game.posession(game, gui);
+        }
+    }
     public void setScoreboard(String txt){
         Scoreboard.setText(txt);
     }

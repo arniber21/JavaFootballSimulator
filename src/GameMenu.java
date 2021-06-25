@@ -6,11 +6,11 @@ public class GameMenu extends JFrame{
     private JPanel mainWindow;
     private JLabel Title;
     private JButton BothSides;
-    private JButton OneSide;
+    private JList HomeTeam;
+    private JList AwayTeam;
     private JButton SimGame;
-    private JButton SimSeason;
-    private JButton GenerationSim;
-
+    private team HomeSelectedTeam;
+    private team AwaySelectedTeam;
     public GameMenu(String title){
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,22 +18,44 @@ public class GameMenu extends JFrame{
         this.pack();
         BothSides.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                getSelectedHomeTeam();
+                getSelectedAwayTeam();
                 GameUI.playBothSides("default");
-            }
-        });
-        SimGame.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-
             }
         });
     }
     public static void main(String[] args){
         JFrame window = new GameMenu("Java Football Simulator");
         window.setVisible(true);
+        ((GameMenu) window).initializeMenu();
+    }
+    public void initializeMenu(){
+        HomeTeam.setListData(new String[] {
+			"Bills","Dolphins","Patriots","Jets",
+			"Ravens","Bengals","Browns","Steelers",
+			"Texans","Colts","Jaguars","Titans",
+			"Broncos","Chiefs","Raiders","Chargers",
+			"Cowboys","Giants","Eagles","Redskins",
+			"Bears","Lions","Packers","Vikings",
+			"Falcons","Panthers","Saints","Buccaneers"
+			,"Cardinals","Rams","49ers","Seahawks"}
+        );
+        AwayTeam.setListData(new String[]{
+            "Bills","Dolphins","Patriots","Jets",
+            "Ravens","Bengals","Browns","Steelers",
+            "Texans","Colts","Jaguars","Titans",
+            "Broncos","Chiefs","Raiders","Chargers",
+            "Cowboys","Giants","Eagles","Redskins",
+            "Bears","Lions","Packers","Vikings",
+            "Falcons","Panthers","Saints","Buccaneers"
+            ,"Cardinals","Rams","49ers","Seahawks"}
+        );    
+    }
+    public void getSelectedAwayTeam(){
+
+    }
+    public void getSelectedHomeTeam(){
+        
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

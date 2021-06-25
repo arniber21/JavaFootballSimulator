@@ -67,9 +67,9 @@ public class simulator {
 			game.ball = Math.abs(100-game.ball);
 			return 0;
 		}
-		else if(randomBool(0.2*qb.mob/100.0)){
+		else if(randomBool(0.5*qb.mob/100.0)){
 			qb.rushAttempts++;
-			yardsGained = randomNum(qb.mob/100.0 * 20, -3);
+			yardsGained = randomNum(qb.mob/100.0 * 20, -3*qb.mob/100);
 			gui.setLastPlay(qb.name + " scrambles for a gain of "+yardsGained);
 			qb.rushYards += yardsGained;
 			game.gameClock -= 30;
