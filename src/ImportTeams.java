@@ -944,10 +944,108 @@ public class ImportTeams {
 
         }
         if(Team.name.equals("Chargers")){
-            
+            Team.rb.name = "Austin Ekeler";
+            Team.rb.speed = 70;
+            Team.rb.elusive = 30;
+            Team.rb.power = 20;
+
+            Team.rb2.name = "Justin Jackson";
+            Team.rb2.speed = 50;
+            Team.rb2.elusive = 40;
+            Team.rb2.power = 50;
+
+            Team.rb3.name = "Joshua Kelley";
+            Team.rb3.speed = 90;
+            Team.rb3.elusive = 10;
+            Team.rb3.power = 5;
+
+            Team.lb.name  = "Kenneth Murray";
+            Team.lb.power = 60;
+            Team.lb.playmake = 40;
+
+            Team.dt.name  = "Joey Bosa";
+            Team.dt.power = 90;
+            Team.dt.playmake = 70;
+
+            Team.cb.name = "Derwin James";
+            Team.cb.coverage = 90;
+            Team.cb.playmake = 40;
+
+            Team.qb.name = "Justin Herbert";
+            Team.qb.thp = 60;
+            Team.qb.tha = 80;
+            Team.qb.mob = 30;
+
+            Team.wr.name = "Keenan Allen";
+            Team.wr.routerunning = 40;
+            Team.wr.catching = 90;
+
+            Team.wr2.name = "Mike Williams";
+            Team.wr2.catching = 40;
+            Team.wr2.routerunning = 90;
+
+            Team.wr3.name = "Jalen Gutyon";
+            Team.wr3.catching = 50;
+            Team.wr3.routerunning = 50;
+
+            Team.wr4.name = "Tyron Johnson";
+            Team.wr4.catching = 30;
+            Team.wr4.routerunning = 70;
+
+            Team.wr5.name = "Josh Palmer";
+            Team.wr5.catching = 90;
+            Team.wr5.routerunning = 10;
+
+            Team.wr6.name = "Joe Reed";
+            Team.wr6.catching = 10;
+            Team.wr6.routerunning = 60;
         }
         if(Team.name.equals("Raiders")){
-            
+            Team.rb.name = "Josh Jacobs";
+            Team.rb.speed = 90;
+            Team.rb.elusive = 20;
+            Team.rb.power = 10;
+
+            Team.rb2.name = "Kenyan Drake";
+            Team.rb2.speed = 60;
+            Team.rb2.elusive = 40;
+            Team.rb2.power = 40;
+
+            Team.rb3.name = "Jalen Richard";
+            Team.rb3.speed = 60;
+            Team.rb3.elusive = 10;
+            Team.rb3.power = 70;
+
+            Team.lb.name = "Nicholas Morrow";
+            Team.lb.power = 10;
+            Team.lb.playmake = 50;
+
+            Team.dt.name = "Max Crosby";
+            Team.dt.power = 90;
+            Team.dt.playmake = 40;
+
+            Team.cb.name = "Trayvon Mullen";
+            Team.cb.coverage = 20;
+            Team.cb.playmake = 90;
+
+            Team.qb.name = "Derek Carr";
+            Team.qb.thp = 90;
+            Team.qb.tha = 60;
+            Team.qb.mob = 20;
+
+            Team.wr.name = "Henry Ruggs";
+            Team.wr.catching = 5;
+            Team.wr.routerunning = 95;
+
+            Team.wr2.name = "John Brown";
+            Team.wr2.catching = 20;
+            Team.wr2.routerunning = 90;
+
+            Team.wr3.name = "Hunter Renfrow";
+            Team.wr3.catching = 20;
+            Team.wr3.routerunning = 80;
+
+            Team.wr4.name = "";
         }
         if(Team.name.equals("Cowboys")){
             
