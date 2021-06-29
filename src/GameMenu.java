@@ -11,6 +11,15 @@ public class GameMenu extends JFrame{
     private JButton SimGame;
     private team HomeSelectedTeam;
     private team AwaySelectedTeam;
+    private String[] teamList = {
+            "Bills","Dolphins","Patriots","Jets",
+            "Ravens","Bengals","Browns","Steelers",
+            "Texans","Colts","Jaguars","Titans",
+            "Broncos","Chiefs","Raiders","Chargers",
+            "Cowboys","Giants","Eagles","Redskins",
+            "Bears","Lions","Packers","Vikings",
+            "Falcons","Panthers","Saints","Buccaneers"
+            ,"Cardinals","Rams","49ers","Seahawks"};
     public GameMenu(String title){
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,9 +27,12 @@ public class GameMenu extends JFrame{
         this.pack();
         BothSides.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                getSelectedHomeTeam();
-                getSelectedAwayTeam();
-                GameUI.playBothSides("default");
+                Game game = new Game();
+                game.Blues = getSelectedAwayTeam();
+                game.Reds = getSelectedHomeTeam();
+                GameUI GameGUI = new GameUI("Java Football Sim", game);
+                GameGUI.setVisible(true);
+                GameGUI.playBothSides("default");
             }
         });
     }
@@ -30,32 +42,29 @@ public class GameMenu extends JFrame{
         ((GameMenu) window).initializeMenu();
     }
     public void initializeMenu(){
-        HomeTeam.setListData(new String[] {
-			"Bills","Dolphins","Patriots","Jets",
-			"Ravens","Bengals","Browns","Steelers",
-			"Texans","Colts","Jaguars","Titans",
-			"Broncos","Chiefs","Raiders","Chargers",
-			"Cowboys","Giants","Eagles","Redskins",
-			"Bears","Lions","Packers","Vikings",
-			"Falcons","Panthers","Saints","Buccaneers"
-			,"Cardinals","Rams","49ers","Seahawks"}
-        );
-        AwayTeam.setListData(new String[]{
-            "Bills","Dolphins","Patriots","Jets",
-            "Ravens","Bengals","Browns","Steelers",
-            "Texans","Colts","Jaguars","Titans",
-            "Broncos","Chiefs","Raiders","Chargers",
-            "Cowboys","Giants","Eagles","Redskins",
-            "Bears","Lions","Packers","Vikings",
-            "Falcons","Panthers","Saints","Buccaneers"
-            ,"Cardinals","Rams","49ers","Seahawks"}
-        );    
+        HomeTeam.setListData(teamList);
+        AwayTeam.setListData(teamList);
     }
-    public void getSelectedAwayTeam(){
+    public team getSelectedAwayTeam(){
+        team Team = new team();
+        if(AwayTeam.isSelectionEmpty()){
+            Team.name = "Buccaneers";
+        }
+        else {
+            Team.name = teamList[AwayTeam.getSelectedIndex()];
+        }
 
+        return Team;
     }
-    public void getSelectedHomeTeam(){
-        
+    public team getSelectedHomeTeam(){
+        team Team = new team();
+        if(AwayTeam.isSelectionEmpty()){
+            Team.name = "Patriots";
+        }
+        else {
+            Team.name = teamList[HomeTeam.getSelectedIndex()];
+        }
+        return Team;
     }
 
 }

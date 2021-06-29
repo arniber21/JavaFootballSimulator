@@ -137,7 +137,7 @@ public class ImportTeams {
         setPlayers(Team);
         return Team;
     }
-    public void setPlayers(team Team){
+    public team setPlayers(team Team){
         if(Team.name.equals("Bills")){
             Team.rb.name = "Devin Singletary";
             Team.rb.speed = 50;
@@ -676,7 +676,7 @@ public class ImportTeams {
             Team.lb.power = 90;
             Team.lb.playmake = 70;
 
-            Team.dt.name = "Deforeest Buckner";
+            Team.dt.name = "Deforest Buckner";
             Team.dt.power = 90;
             Team.dt.playmake = 70;
 
@@ -1045,26 +1045,313 @@ public class ImportTeams {
             Team.wr3.catching = 20;
             Team.wr3.routerunning = 80;
 
-            Team.wr4.name = "";
+            Team.wr4.name = "Willie Snead";
+            Team.wr4.catching = 10;
+            Team.wr4.routerunning = 90;
+
+            Team.wr5.name = "Zay Jones";
+            Team.wr5.catching = 40;
+            Team.wr5.routerunning = 40;
+
+            Team.wr6.name = "Bryan Edwards";
+            Team.wr6.catching = 30;
+            Team.wr6.routerunning = 50;
         }
         if(Team.name.equals("Cowboys")){
+            Team.rb.name = "Ezekiel Elliot";
+            Team.rb.speed = 80;
+            Team.rb.elusive = 10;
+            Team.rb.power = 50;
+
+            Team.rb2.name = "Tony Pollard";
+            Team.rb2.speed = 90;
+            Team.rb2.power = 20;
+            Team.rb2.elusive = 5;
+
+            Team.rb3.name = "Rico Dowdle";
+            Team.rb3.speed = 40;
+            Team.rb3.elusive = 40;
+            Team.rb3.power = 50;
+
+            Team.lb.name = "Leighton Vander Esch";
+            Team.lb.power = 90;
+            Team.lb.playmake = 30;
+
+            Team.dt.name = "Demarcus Lawrence";
+            Team.dt.power = 90;
+            Team.dt.playmake = 40;
+
+            Team.cb.name = "Trayvon Diggs";
+            Team.cb.playmake = 70;
+            Team.cb.coverage = 40;
+
+            Team.qb.name = "Dak Prescott";
+            Team.qb.thp = 50;
+            Team.qb.tha = 80;
+            Team.qb.mob = 30;
+
+            Team.wr.name = "Amari Cooper";
+            Team.wr.catching = 90;
+            Team.wr.routerunning = 50;
+
+            Team.wr2.name = "Michael Gallup";
+            Team.wr2.catching = 30;
+            Team.wr2.routerunning = 90;
+
+            Team.wr3.name = "CeeDee Lamb";
+            Team.wr3.catching = 50;
+            Team.wr3.routerunning = 50;
+
+            Team.wr4.name = "Ced Wilson";
+            Team.wr4.catching= 30;
+            Team.wr4.routerunning = 60;
+
+            Team.wr5.name = "Noah Brown";
+            Team.wr5.catching = 70;
+            Team.wr5.routerunning  = 20;
+
+            Team.wr6.name = "Osirus Mitchell";
+            Team.wr6.catching = 50;
+            Team.wr6.routerunning = 30;
+
             
         }
         if(Team.name.equals("Eagles")){
-            
-        }
+            Team.rb.name = "Miles Sanders";
+            Team.rb.speed= 60;
+            Team.rb.elusive = 60;
+            Team.rb.power = 5;
 
-        if(Team.name.equals("Giants")){
-            
+            Team.rb2.name  = "Boston Scott";
+            Team.rb2.speed = 30;
+            Team.rb2.elusive=80;
+            Team.rb2.power = 50;
+
+            Team.rb3.name = "Keryon Johnson";
+            Team.rb3.speed = 90;
+            Team.rb3.elusive = 40;
+            Team.rb3.power = 10;
+
+            Team.lb.name = "Eric Wilson";
+            Team.lb.power = 40;
+            Team.lb.playmake = 70;
+
+            Team.dt.name = "Fletcher Cox";
+            Team.dt.power = 90;
+            Team.dt.playmake = 40;
+
+            Team.cb.name = "Darius Slay";
+            Team.cb.coverage = 90;
+            Team.cb.playmake = 30;
+
+            Team.qb.name = "Jalen Hurts";
+            Team.qb.thp = 90;
+            Team.qb.tha = 30;
+            Team.qb.mob = 60;
+
+            Team.wr.name = "Devonta Smith";
+            Team.wr.catching = 20;
+            Team.wr.routerunning = 95;
+
+            Team.wr2.name = "Jaelen Reagor";
+            Team.wr.catching = 60;
+            Team.wr.routerunning = 50;
+
+            Team.wr3.name = "Travis Fulgham";
+            Team.wr3.catching = 20;
+            Team.wr3.routerunning = 80;
+
+            Team.wr4.name = "J.J. Arcega Whiteside";
+            Team.wr4.catching = 90;
+            Team.wr4.routerunning = 90;
+
+            Team.wr5.name = "Greg Ward";
+            Team.wr5.catching = 20;
+            Team.wr5.routerunning  = 60;
+
+            Team.wr6.name = "John Hightower";
+            Team.wr6.catching = 40;
+            Team.wr6.routerunning = 40;
         }
-        if(Team.name.equals("Footbal Team")){
-            
+        if(Team.name.equals("Giants")){
+            Team.rb.name = "Saquon Barkley";
+            Team.rb.speed = 90;
+            Team.rb.elusive = 40;
+            Team.rb.power = 20;
+
+            Team.rb2.name = "Devontae Booker";
+            Team.rb2.speed = 30;
+            Team.rb2.elusive = 60;
+            Team.rb2.power = 60;
+
+            Team.rb3.name = "Corey Clement";
+            Team.rb3.speed = 60;
+            Team.rb3.elusive  = 60;
+            Team.rb3.power = 30;
+
+            Team.lb.name = "Blake Martinez";
+            Team.lb.power = 30;
+            Team.lb.playmake = 90;
+
+            Team.dt.name = "Dexter Lawrence";
+            Team.dt.power = 60;
+            Team.dt.playmake = 60;
+
+            Team.cb.name = "James Bradberry";
+            Team.cb.coverage = 40;
+            Team.cb.playmake = 70;
+
+            Team.qb.name = "Daniel Jones";
+            Team.qb.thp = 50;
+            Team.qb.tha = 90;
+            Team.qb.mob = 20;
+
+            Team.wr.name = "Kenny Golladay";
+            Team.wr.catching = 90;
+            Team.wr.routerunning = 40;
+
+            Team.wr2.name = "Sterling Shepard";
+            Team.wr2.catching = 50;
+            Team.wr.routerunning = 50;
+
+            Team.wr3.name = "Darius Slayton";
+            Team.wr3.catching = 30;
+            Team.wr3.routerunning = 80;
+
+            Team.wr4.name = "Kadarius Toney";
+            Team.wr4.catching = 30;
+            Team.wr4.routerunning = 70;
+
+            Team.wr5.name = "John Ross";
+            Team.wr5.catching = 5;
+            Team.wr5.routerunning = 90;
+
+            Team.wr6.name = "Dante Pettis";
+            Team.wr6.catching = 40;
+            Team.wr6.routerunning = 40;
+        }
+        if(Team.name.equals("Football Team")){
+            Team.rb.name = "Antonio Gibson";
+            Team.rb.speed = 70;
+            Team.rb.elusive = 30;
+            Team.rb.power = 20;
+
+            Team.rb2.name = "JD McKissic";
+            Team.rb2.speed = 90;
+            Team.rb2.elusive = 10;
+            Team.rb2.power = 10;
+
+            Team.rb3.name = "Peyton Barber";
+            Team.rb3.speed = 50;
+            Team.rb3.elusive = 40;
+            Team.rb3.power = 50;
+
+            Team.lb.name = "Jamin Davis";
+            Team.lb.power = 60;
+            Team.lb.playmake = 60;
+
+            Team.dt.name = "Chase Young";
+            Team.dt.power = 90;
+            Team.dt.playmake = 40;
+
+            Team.cb.name = "William Jackson";
+            Team.cb.coverage = 50;
+            Team.cb.playmake = 50;
+
+            Team.qb.name = "Ryan Fitzpatrick";
+            Team.qb.thp = 60;
+            Team.qb.tha = 90;
+            Team.qb.mob = 10;
+
+            Team.wr.name = "Terry Mclaurin";
+            Team.wr.catching = 70;
+            Team.wr.routerunning = 70;
+
+            Team.wr2.name = "Curtis Samuel";
+            Team.wr2.catching = 10;
+            Team.wr2.routerunning = 90;
+
+            Team.wr3.name = "Adam Humphries";
+            Team.wr3.catching = 30;
+            Team.wr3.routerunning = 60;
+
+            Team.wr4.name = "Dynami Brown";
+            Team.wr4.catching = 30;
+            Team.wr4.routerunning = 50;
+
+            Team.wr5.name = "Steven Sims";
+            Team.wr5.catching = 10;
+            Team.wr5.routerunning = 50;
+
+            Team.wr6.name = "Cam Sims";
+            Team.wr6.catching = 30;
+            Team.wr6.routerunning = 30;
+
         }
         if(Team.name.equals("Bears")){
-            
+            Team.rb.name = "David Montgomery";
+            Team.rb.speed = 90;
+            Team.rb.elusive = 10;
+            Team.rb.power = 20;
+
+            Team.rb2.name = "Tarik Cohen";
+            Team.rb2.speed = 60;
+            Team.rb2.elusive = 60;
+            Team.rb2.power = 30;
+
+            Team.rb3.name = "Damien Williams";
+            Team.rb3.speed = 60;
+            Team.rb3.elusive = 20;
+            Team.rb3.power = 60;
+
+            Team.lb.name = "Roquan Smith";
+            Team.lb.power = 60;
+            Team.lb.playmake = 80;
+
+            Team.dt.name = "Khalil Mack";
+            Team.dt.power = 90;
+            Team.dt.playmake = 60;
+
+            Team.cb.name = "Jaylon Johnson";
+            Team.cb.coverage = 60;
+            Team.cb.playmake = 60;
+
+            Team.qb.name = "Andy Dalton";
+            Team.qb.thp = 60;
+            Team.qb.tha = 90;
+            Team.qb.mob = 10;
+
+            Team.wr.name = "Allen Robinson";
+            Team.wr.catching  = 90;
+            Team.wr.routerunning = 40;
+
+            Team.wr2.name = "Darnell Mooney";
+            Team.wr2.catching = 30;
+            Team.wr2.routerunning = 90;
+
+            Team.wr3.name = "Anthony Miller";
+            Team.wr3.catching = 50;
+            Team.wr3.catching = 50;
+
+            Team.wr4.name = "Marquise Goodwin";
+            Team.wr4.catching = 60;
+            Team.wr4.routerunning = 40;
+
+            Team.wr5.name = "Javon Wims";
+            Team.wr5.catching = 60;
+            Team.wr5.routerunning = 30;
+
+            Team.wr6.name = "Damiere Byrd";
+            Team.wr6.catching = 20;
+            Team.wr6.routerunning = 70;
         }
         if(Team.name.equals("Lions")){
-            
+            Team.rb.name = "Deandre Swift";
+            Team.rb.speed = 90;
+            Team.rb.elusive = 10;
+            Team.rb.power = 20;
+
+            Team.rb2.name = "";
         }
         if(Team.name.equals("Packers")){
             
@@ -1152,12 +1439,7 @@ public class ImportTeams {
         if(Team.name.equals("Seahawks")){
             
         }
-        if(Team.name.equals("Bills")){
-            
-        }
-        if(Team.name.equals("Bills")){
-            
-        }
+        return Team;
     }
 
 }
